@@ -26,8 +26,8 @@ class Database {
     private function getConfig()
     {
         // On vérifie que le fichier de config existe
-        if (file_exists(ROOT. "/config/dbConfig.php")) {
-            require ROOT. "/config/dbConfig.php";
+        if (file_exists(ROOT. "/dbConfig.php")) {
+            require ROOT. "/dbConfig.php";
             // On parcourt le tableau et pour chaque élément on associe la valeur à la propriété du même nom que la clé
             foreach ($dbConfig as $key => $value) {
                 $this->$key = $value;
