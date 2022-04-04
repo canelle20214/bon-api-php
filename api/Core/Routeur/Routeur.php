@@ -14,8 +14,8 @@ final class Routeur {
             $path = explode("/", $_SERVER['PATH_INFO']);
             
             // On génère le nom du controller
-            // $controllerName = ucfirst($_GET['controller']). "Controller";
             $controllerName = "App\Controller\\". ucfirst($path[3]). "Controller";
+
             // On instancie le controller
             $controller = new $controllerName();
             
@@ -23,7 +23,7 @@ final class Routeur {
             $param = null;
             if (isset($path[4])) {
                 if (is_numeric($path[4])) {
-                    $method = "single";
+                    $method = "getOne";
                     $param = $path[4];
                 } elseif (method_exists($controller, $path[4])) {
                     $method = $path[4];
@@ -31,7 +31,7 @@ final class Routeur {
                     throw new \Exception("Méthode inexistante", 404);
                 }
             } else {
-                $method = "index";
+                $method = "getAll";
             }
 
             $controller->$method($param);
