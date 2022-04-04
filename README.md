@@ -16,3 +16,7 @@ php composer.phar install
 ```shell
 php -S localhost:8000 -t api/public
 ```
+
+### Next.JS
+After pulling for the first time, you need to install the packages in order to be able to boot Next.JS.
+Use this command ```npm install``` inside the ```front```folder
