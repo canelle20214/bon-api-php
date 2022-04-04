@@ -9,8 +9,8 @@ php composer.phar install
 ```
 
 2. Edit your db info
-Follow instructions on dbConfig.example.php
-
+* Copy and rename `api/dbConfig.example.php` in `api/dbConfig.php`
+* Edit `web/dbConfig.php` with your DB info
 
 3. Run the php server
 ```shell
