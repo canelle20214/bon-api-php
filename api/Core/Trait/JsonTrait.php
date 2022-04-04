@@ -10,14 +10,14 @@ trait JsonTrait {
      * @param integer $responseCode
      * @return void
      */
-    public function jsonResponse (mixed $data, int $responseCode)
+    public static function jsonResponse (mixed $data, int $responseCode)
     {
         header("Content-type: application/json");
         http_response_code($responseCode);
 
         if (is_object($data)) {
             echo json_encode($data());
-            return true;
+            return;
         } elseif (is_array($data)) {
             foreach ($data as $key => $value) {
                 if (is_object($value)) {
