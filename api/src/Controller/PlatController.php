@@ -30,8 +30,20 @@ final class PlatController extends DefaultController{
     {
         $plat = $this->model->find($id);
         $this->jsonResponse($plat, 200);
-
     }
+//
+//    /**
+//     * @param int $id
+//     * @return bool
+//     */
+//    public function findOne(int $id): bool
+//    {
+//        $plat = false;
+//        if (!empty($this->model->find($id))) {
+//            $plat = true;
+//        }
+//        return $plat;
+//    }
 
     /**
      * @param array $data
