@@ -33,8 +33,13 @@ final class PlatController extends DefaultController{
         $this->jsonResponse($plat, 201);
     }
 
-//    public function delete(int $id) {
-//        $plat = $this->model->find($id);
-//        $this->jsonResponse($plat, 200);
-//    }
+    public function update() {
+        $this->model->update($_GET['id'], $_POST);
+        $this->jsonResponse("Plat modifié", 201);
+    }
+
+    public function delete() {
+        $this->model->delete($_GET['id']);
+        $this->jsonResponse("Plat supprimé", 200);
+    }
 }
