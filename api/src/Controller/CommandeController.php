@@ -13,13 +13,13 @@ final class CommandeController extends DefaultController{
         $this->model = new CommandeModel;
     }
 
-    public function index ()
+    public function getAll()
     {
         $data = $this->model->findAll();
         $this->jsonResponse($data, 200);
     }
 
-    public function single (int $id)
+    public function getOne(int $id)
     {
         $data = $this->model->find($id);
         $this->jsonResponse($data, 200);
