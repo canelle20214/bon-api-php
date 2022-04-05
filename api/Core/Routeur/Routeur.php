@@ -83,7 +83,7 @@ final class Routeur
             }
 
         } catch (\Exception $e) {
-            self::jsonResponse($e->getMessage(), $e->getCode());
+            self::jsonResponse($e->getMessage(), 404);
         }
     }
 }
