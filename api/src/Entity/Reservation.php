@@ -24,6 +24,7 @@ final class Reservation extends DefaultEntity implements JsonSerializable
             "creneaux" => $this->creneaux,
         ];
     }
+    
     /**
      * Get the value of id
      *
