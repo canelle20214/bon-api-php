@@ -40,7 +40,6 @@ final class AdminController extends DefaultController{
     {
         $data = $this->model->find($id);
         $this->jsonResponse($data, 200);
-
     }
 
     public function save (array $params)
