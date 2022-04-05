@@ -29,21 +29,12 @@ final class PlatController extends DefaultController{
     public function getOne(int $id)
     {
         $plat = $this->model->find($id);
-        $this->jsonResponse($plat, 200);
+        if ($plat) {
+            $this->jsonResponse($plat, 200);
+        } else {
+            $this->jsonResponse("Ce plat n'existe pas", 404);
+        }
     }
-//
-//    /**
-//     * @param int $id
-//     * @return bool
-//     */
-//    public function findOne(int $id): bool
-//    {
-//        $plat = false;
-//        if (!empty($this->model->find($id))) {
-//            $plat = true;
-//        }
-//        return $plat;
-//    }
 
     /**
      * @param array $data

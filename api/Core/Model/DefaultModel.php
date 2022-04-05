@@ -22,9 +22,9 @@ class DefaultModel extends Database{
      * Retourne une ligne d'une table en fonctionde l'id passé
      *
      * @param integer $id
-     * @return object
+     * @return object|bool
      */
-    public function find(int $id): object
+    public function find(int $id): object|bool
     {
         return $this->getData("SELECT * FROM $this->table WHERE id = $id", $this->entity, true);
     }
