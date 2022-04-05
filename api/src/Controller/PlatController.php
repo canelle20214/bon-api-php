@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Model\PlatModel;
+use App\Security\JWTSecurity;
 use Core\Controller\DefaultController;
 
 final class PlatController extends DefaultController{
@@ -11,6 +12,7 @@ final class PlatController extends DefaultController{
     public function __construct()
     {
         $this->model = new PlatModel;
+        (new JWTSecurity)->verifyToken();
     }
 
     /**

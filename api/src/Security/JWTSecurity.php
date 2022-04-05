@@ -28,11 +28,14 @@ class JWTSecurity {
         return JWT::encode($this->payload, $this->key, 'HS256');
     }
 
-    public function verifyToken(string $token): bool
-    {
-        $decode = JWT::decode($token, new Key($this->key, 'HS256'));
-        //var_dump($decode);
-        //die();
+    public function verifyToken(): bool {
+        if (isset($_COOKIE['token']) && !empty($_COOKIE['token'])) {
+            $token = $_COOKIE['token'];
+            $decode = JWT::decode($token, new Key($this->key, 'HS256'));
+        } else {
+            throw new \Exception("Vous n'avez pas la permission pour acceder à cette page", 403);
+        }
+        return true;
     }
 
 }
