@@ -13,12 +13,19 @@ final class PlatController extends DefaultController{
         $this->model = new PlatModel;
     }
 
+    /**
+     * @return void
+     */
     public function getAll()
     {
         $plats = $this->model->findAll();
         $this->jsonResponse($plats, 200);
     }
 
+    /**
+     * @param int $id
+     * @return void
+     */
     public function getOne(int $id)
     {
         $plat = $this->model->find($id);
@@ -26,6 +33,10 @@ final class PlatController extends DefaultController{
 
     }
 
+    /**
+     * @param array $data
+     * @return void
+     */
     public function save(array $data)
     {
         $lastId = $this->model->save($data);
@@ -33,11 +44,20 @@ final class PlatController extends DefaultController{
         $this->jsonResponse($plat, 201);
     }
 
+    /**
+     * @param int $id
+     * @param array $data
+     * @return void
+     */
     public function update(int $id, array $data) {
         $this->model->update($id, $data);
         $this->jsonResponse("Plat modifié", 201);
     }
 
+    /**
+     * @param int $id
+     * @return void
+     */
     public function delete(int $id) {
         $this->model->delete($id);
         $this->jsonResponse("Plat supprimé", 200);
