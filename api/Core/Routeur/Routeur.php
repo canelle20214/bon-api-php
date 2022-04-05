@@ -47,7 +47,13 @@ final class Routeur {
                         $controller->update($path[4], $_PUT);
                     }
                     break;
+                case 'DELETE':
+                    if (isset($path[4]) && is_numeric($path[4])) {
+                        $controller->delete($path[4]);
+                    }
+                    break;
                 default:
+                    throw new \Exception("Request non autorisé", 404);
                     break;
             }
 
