@@ -2,8 +2,9 @@
 namespace App\Entity;
 
 use Core\Entity\DefaultEntity;
+use JsonSerializable;
 
-final class Commande extends DefaultEntity{
+final class Commande extends DefaultEntity implements JsonSerializable{
 
     // php@8.1
     // private readonly int $id;
@@ -21,7 +22,7 @@ final class Commande extends DefaultEntity{
     
     private string $insertion;
 
-    public function __invoke()
+    public function jsonSerialize()
     {
         return [
             'id' => $this->id,
@@ -94,9 +95,9 @@ final class Commande extends DefaultEntity{
     }
 
     /**
-     * Set the value of name
+     * Set the value of nom
      *
-     * @param string $name
+     * @param string $nom
      *
      * @return self
      */
