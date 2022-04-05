@@ -10,21 +10,20 @@ final class Reservation extends DefaultEntity implements JsonSerializable
 {
     private int $id;
 
-    private string $name;
-    private string $number;
+    private string $nom;
+    private int $nombre;
 
-    private DateTime $dateReservation;
+    private string $creneaux;
 
     public function jsonSerialize(): mixed
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            "number" => $this->number,
-            "dateReservation" => $this->dateReservation,
+            'nom' => $this->nom,
+            "nombre" => $this->nombre,
+            "creneaux" => $this->creneaux,
         ];
     }
-
     /**
      * Get the value of id
      *
@@ -36,75 +35,74 @@ final class Reservation extends DefaultEntity implements JsonSerializable
     }
 
     /**
-     * Get the value of name
+     * Get the value of nom
      *
      * @return string
      */
-    public function getName(): string
+    public function getNom(): string
     {
-        return $this->name;
+        return $this->nom;
     }
     
     /**
-     * Set the value of name
+     * Set the value of nom
      *
-     * @param string $name
+     * @param string $nom
      *
      * @return self
      */
-    public function setName(string $name): self
+    public function setNom(string $nom): self
     {
-        $this->name = $name;
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get the value of number
+     * Get the value of nombre
      * 
      * @return int
      */
-    public function getNumber(): int
+    public function getNombre(): int
     {
-        return $this->number;
+        return $this->nombreReservation;
     }
 
     /**
-     * Set the value of number
+     * Set the value of nombre
      * 
-     * @param int $number
+     * @param int $nombre
      * 
      * @return self
      */
-    public function setNumber(int $number): self
+    public function setNombre(int $nombre): self
     {
-        $this->number = $number;
+        $this->nombre = $nombre;
 
         return $this;
     }
 
     /**
-     * Get the value of dateReservation
+     * Get the value of creneaux
      * 
-     * @return DateTime
+     * @return string
      */
-    public function getDateReservation(): DateTime
+    public function getCreneaux(): string
     {
-        return $this->dateReservation;
+        return $this->creneaux;
     }
 
     /**
-     * Set the value of date reservation
+     * Set the value of creneaux
      * 
-     * @param DateTime $dateReservation
+     * @param string $creneaux
      * 
      * @return self
      */
-    public function setDateReservation(DateTime $dateReservation): self
+    public function setCreneaux(string $creneaux): self
     {
-        $this->dateReservation = $dateReservation;
+        $this->creneaux = $creneaux;
 
         return $this;
     }
-    
 }
