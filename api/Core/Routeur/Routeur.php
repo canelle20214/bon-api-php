@@ -26,9 +26,6 @@ final class Routeur
                 throw new \Exception("Classe inéxistante", 404);
             }
 
-            // Vérification du paramètre suivant de l'url
-            $param = null;
-
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'GET':
                     if (isset($path[4]) && is_numeric($path[4])) {

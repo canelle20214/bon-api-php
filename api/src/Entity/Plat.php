@@ -2,8 +2,9 @@
 namespace App\Entity;
 
 use Core\Entity\DefaultEntity;
+use JsonSerializable;
 
-final class Plat extends DefaultEntity{
+final class Plat extends DefaultEntity implements JsonSerializable {
 
     // php@8.1
     /**
@@ -38,9 +39,9 @@ final class Plat extends DefaultEntity{
     private string $description;
 
     /**
-     * @return array
+     * @return mixed
      */
-    public function __invoke() {
+    public function jsonSerialize(): mixed {
         return [
             'id' => $this->id,
             'nom' => $this->nom,
