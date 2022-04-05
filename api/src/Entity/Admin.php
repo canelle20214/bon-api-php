@@ -18,7 +18,7 @@ final class Admin extends DefaultEntity implements JsonSerializable{
     
     private float $password;
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return [
             'id' => $this->id,
