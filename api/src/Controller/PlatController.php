@@ -29,21 +29,12 @@ final class PlatController extends DefaultController{
     public function getOne(int $id)
     {
         $plat = $this->model->find($id);
-        $this->jsonResponse($plat, 200);
+        if ($plat) {
+            $this->jsonResponse($plat, 200);
+        } else {
+            $this->jsonResponse("Ce plat n'existe pas", 404);
+        }
     }
-//
-//    /**
-//     * @param int $id
-//     * @return bool
-//     */
-//    public function findOne(int $id): bool
-//    {
-//        $plat = false;
-//        if (!empty($this->model->find($id))) {
-//            $plat = true;
-//        }
-//        return $plat;
-//    }
 
     /**
      * @param array $data
@@ -71,7 +62,12 @@ final class PlatController extends DefaultController{
      * @return void
      */
     public function delete(int $id) {
-        $this->model->delete($id);
-        $this->jsonResponse("Plat supprimé", 200);
+        $plat = $this->model->find($id);
+        if ($plat) {
+            $this->model->delete($id);
+            $this->jsonResponse("Plat supprimé", 200);
+        } else {
+            $this->jsonResponse("Ce plat n'existe pas/plus", 200);
+        }
     }
 }
