@@ -37,6 +37,8 @@ final class Routeur {
                 case 'POST':
                     if (!empty($_POST)) {
                         $controller->save($_POST);
+                    } else {
+                        throw new \Exception("Method not found", 404);
                     }
                     break;
             }
