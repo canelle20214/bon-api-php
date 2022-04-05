@@ -13,6 +13,23 @@ final class AdminController extends DefaultController{
         $this->model = new AdminModel;
     }
 
+    public function login (array $data)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            $admin = $this->model->findOneBy(["mail" => $data['mail']]);
+            if ($admin && password_verify($data['password'], $admin->getPassword())) {
+                // $token = (new JWTSecurity)->sendToken($admin);
+                self::jsonResponse("Ok", 200);
+            }else{
+                self::jsonResponse("Unauthorized", 403);
+            }
+
+        } else {
+            throw new \Exception("Invalid request method", 404);
+            
+        }
+    }
+
     public function getAll()
     {
         $data = $this->model->findAll();
@@ -28,6 +45,7 @@ final class AdminController extends DefaultController{
 
     public function save (array $params)
     {
+        $params['password'] = password_hash($params["password"], "PASSWORD_DEFAULT");
         $lastId = $this->model->save($params);
         $data = $this->model->find($lastId);
         $this->jsonResponse($data, 201);
