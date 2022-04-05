@@ -9,10 +9,13 @@ final class Plat extends DefaultEntity{
     /**
      * @var int
      */
-    private readonly int $id;
+    //private readonly int $id;
 
     // php@8.0
-    //private int $id;
+    /**
+     * @var int 
+     */
+    private int $id;
 
     /**
      * @var string
