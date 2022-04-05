@@ -33,8 +33,8 @@ final class PlatController extends DefaultController{
         $this->jsonResponse($plat, 201);
     }
 
-    public function update() {
-        $this->model->update($_GET['id'], $_POST);
+    public function update(int $id, array $data) {
+        $this->model->update($id, $data);
         $this->jsonResponse("Plat modifié", 201);
     }
 

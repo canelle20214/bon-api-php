@@ -41,6 +41,14 @@ final class Routeur {
                         throw new \Exception("Method not found", 404);
                     }
                     break;
+                case 'PUT':
+                    if (isset($path[4]) && is_numeric($path[4])) {
+                        parse_str(file_get_contents('php://input'), $_PUT);
+                        $controller->update($path[4], $_PUT);
+                    }
+                    break;
+                default:
+                    break;
             }
 
             if (isset($path[4])) {
