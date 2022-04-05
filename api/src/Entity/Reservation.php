@@ -4,8 +4,9 @@ namespace App\Entity;
 
 use Core\Entity\DefaultEntity;
 use DateTime;
+use JsonSerializable;
 
-class Reservation extends DefaultEntity
+final class Reservation extends DefaultEntity implements JsonSerializable
 {
     private int $id;
 
@@ -13,6 +14,16 @@ class Reservation extends DefaultEntity
     private string $number;
 
     private DateTime $dateReservation;
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            "number" => $this->number,
+            "dateReservation" => $this->dateReservation,
+        ];
+    }
 
     /**
      * Get the value of id
@@ -85,7 +96,7 @@ class Reservation extends DefaultEntity
     /**
      * Set the value of date reservation
      * 
-     * @param DateTime $dataReservation
+     * @param DateTime $dateReservation
      * 
      * @return self
      */

@@ -24,9 +24,9 @@ final class Plat extends DefaultEntity implements JsonSerializable {
     private string $nom;
 
     /**
-     * @var int
+     * @var float
      */
-    private int $prix;
+    private float $prix;
 
     /**
      * @var string
@@ -76,17 +76,17 @@ final class Plat extends DefaultEntity implements JsonSerializable {
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getPrix(): int
+    public function getPrix(): float
     {
         return $this->prix;
     }
 
     /**
-     * @param int $prix
+     * @param float $prix
      */
-    public function setPrix(int $prix): void
+    public function setPrix(float $prix): void
     {
         $this->prix = $prix;
     }
