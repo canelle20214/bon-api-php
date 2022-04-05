@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\ReservationModel;
+use App\Security\JWTSecurity;
 use Core\Controller\DefaultController;
 
 final class ReservationController extends DefaultController
@@ -12,6 +13,7 @@ final class ReservationController extends DefaultController
     public function __construct()
     {
         $this->model = new ReservationModel;
+        (new JWTSecurity)->verifyToken();
     }
 
     public function getAll(): void
