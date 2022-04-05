@@ -22,7 +22,7 @@ final class Commande extends DefaultEntity implements JsonSerializable{
     
     private string $insertion;
 
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return [
             'id' => $this->id,
