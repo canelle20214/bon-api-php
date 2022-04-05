@@ -70,3 +70,4 @@ INSERT INTO plat (id, nom, prix, image, description) VALUES
 
 insert into commande(nom, reference, prix,status, insertion) values ('Alexandre', 'Test',14.3," En cours de préparation","2022-01-19 03:14:07");
 insert into plat_commande(plat_id, commande_id) values (2,1);
+INSERT INTO reservation(nom, nombre, creneaux) VALUES ('Alexandre',4,'2038-01-19 03:14:07'); 
