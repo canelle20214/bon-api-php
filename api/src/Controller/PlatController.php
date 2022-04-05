@@ -62,7 +62,12 @@ final class PlatController extends DefaultController{
      * @return void
      */
     public function delete(int $id) {
-        $this->model->delete($id);
-        $this->jsonResponse("Plat supprimé", 200);
+        $plat = $this->model->find($id);
+        if ($plat) {
+            $this->model->delete($id);
+            $this->jsonResponse("Plat supprimé", 200);
+        } else {
+            $this->jsonResponse("Ce plat n'existe pas/plus", 200);
+        }
     }
 }
