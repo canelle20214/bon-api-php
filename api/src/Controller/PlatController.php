@@ -26,9 +26,9 @@ final class PlatController extends DefaultController{
 
     }
 
-    public function save()
+    public function save(array $data)
     {
-        $lastId = $this->model->save($_POST);
+        $lastId = $this->model->save($data);
         $plat = $this->model->find($lastId);
         $this->jsonResponse($plat, 201);
     }

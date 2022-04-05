@@ -13,7 +13,7 @@ final class Plat extends DefaultEntity{
 
     // php@8.0
     /**
-     * @var int 
+     * @var int
      */
     private int $id;
 

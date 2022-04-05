@@ -17,10 +17,30 @@ final class Routeur {
             $controllerName = "App\Controller\\". ucfirst($path[3]). "Controller";
 
             // On instancie le controller
-            $controller = new $controllerName();
-            
+            if (class_exists($controllerName)) {
+                $controller = new $controllerName();
+            } else {
+                throw new \Exception("Classe inéxistante", 404);
+            }
+
             // Vérification du paramètre suivant de l'url
             $param = null;
+
+            switch ($_SERVER['REQUEST_METHOD']) {
+                case 'GET':
+                    if (isset($path[4]) && is_numeric($path[4])) {
+                        $controller->getOne($path[4]);
+                    } else {
+                        $controller->getAll();
+                    }
+                    break;
+                case 'POST':
+                    if (!empty($_POST)) {
+                        $controller->save($_POST);
+                    }
+                    break;
+            }
+
             if (isset($path[4])) {
                 if (is_numeric($path[4])) {
                     $method = "getOne";
