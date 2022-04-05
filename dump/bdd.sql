@@ -39,7 +39,7 @@ DROP TABLE IF EXISTS reservation;
 CREATE TABLE IF NOT EXISTS reservation(
     id int not null AUTO_INCREMENT,
     nom varchar(100) not null,
-    nombre_reservation int not null,
+    nombre int not null,
     creneaux timestamp not null,
     PRIMARY KEY (id)
 );
@@ -64,11 +64,9 @@ CREATE TABLE IF NOT EXISTS table_reservation(
     FOREIGN KEY (tables_id) references tables(id) ON DELETE CASCADE
 );
 
--------------------------------- 
-INSERT INTO `plat` (`id`, `nom`, `prix`, `image`, `description`) VALUES
+INSERT INTO plat (id, nom, prix, image, description) VALUES
 (2, 'Fourmis rouges avec du boeuf et du basilic', 25.6, 'https://www.mamawax.fr/img/cms/banniere-conseils-fourmis-rouges.jpg', 'Des fourmis de différentes tailles, dont certaines sont à peine visibles et d\'autres de presque un pouce de long, sont sautés avec du gingembre, de la citronnelle, de l\'ail, des échalotes et du bœuf émincé.\r\n\r\nBeaucoup de piments complètent le plat aromatique, sans dominer la saveur aigre délicate que les fourmis donnent au bœuf.\r\n\r\nCe repas est servi avec du riz, et si vous êtes chanceux, vous aurez aussi une partie de larves de fourmis dans votre bol.');
 
 
 insert into commande(nom, reference, prix,status, insertion) values ('Alexandre', 'Test',14.3," En cours de préparation","2022-01-19 03:14:07");
 insert into plat_commande(plat_id, commande_id) values (2,1);
-INSERT INTO `reservation`( `nom`, `nombre_reservation`, `creneaux`) VALUES ('Alexandre',4,'2038-01-19 03:14:07'); 

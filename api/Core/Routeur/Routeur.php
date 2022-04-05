@@ -24,8 +24,6 @@ final class Routeur
 
             // On génère le nom du controller
             $controllerName = "App\Controller\\" . ucfirst($path[3]) . "Controller";
-            var_dump(class_exists($controllerName));
-            die();
 
             // On instancie le controller
             if (class_exists($controllerName)) {
