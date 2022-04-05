@@ -45,10 +45,9 @@ final class AdminController extends DefaultController{
 
     public function save (array $params)
     {
-        $params['password'] = password_hash($params["password"], "PASSWORD_DEFAULT");
-        $lastId = $this->model->save($params);
-        $data = $this->model->find($lastId);
-        $this->jsonResponse($data, 201);
+        $params['password'] = password_hash($params["password"], PASSWORD_DEFAULT);
+        $this->model->save($params);
+        self::jsonResponse("Admin crée", 201);
     }
 
     public function update(int $id, array $params){
