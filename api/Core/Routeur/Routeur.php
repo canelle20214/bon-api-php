@@ -1,20 +1,23 @@
 <?php
+
 namespace Core\Routeur;
 
 use Core\Trait\JsonTrait;
 
-final class Routeur {
+final class Routeur
+{
 
     use JsonTrait;
 
-    public static function Routes (){
+    public static function Routes()
+    {
         try {
             // On casse le path info pour récupérer le nom du controller à instancier
             // ainsi que l'id de l'élément à récupérer ou la méthode à exécuter.
             $path = explode("/", $_SERVER['PATH_INFO']);
-            
+
             // On génère le nom du controller
-            $controllerName = "App\Controller\\". ucfirst($path[3]). "Controller";
+            $controllerName = "App\Controller\\" . ucfirst($path[3]) . "Controller";
 
             // On instancie le controller
             if (class_exists($controllerName)) {
@@ -30,13 +33,29 @@ final class Routeur {
                 case 'GET':
                     if (isset($path[4]) && is_numeric($path[4])) {
                         $controller->getOne($path[4]);
+                    } elseif (isset($path[4])) {
+                        if (method_exists($controller, $path[4])) {
+                            $method = $path[4];
+                            $controller->$method();
+                        } else {
+                            throw new \Exception("Method inéxistante en GET", 404);
+                        }
                     } else {
                         $controller->getAll();
                     }
                     break;
                 case 'POST':
                     if (!empty($_POST)) {
-                        $controller->save($_POST);
+                        if (isset($path[4])) {
+                            if (method_exists($controller, $path[4])) {
+                                $method = $path[4];
+                                $controller->$method();
+                            } else {
+                                throw new \Exception("Méthode inéxistante en POST", 404);
+                            }
+                        } else {
+                            $controller->save($_POST);
+                        }
                     } else {
                         throw new \Exception("Method not found", 404);
                     }
@@ -45,6 +64,15 @@ final class Routeur {
                     if (isset($path[4]) && is_numeric($path[4])) {
                         parse_str(file_get_contents('php://input'), $_PUT);
                         $controller->update($path[4], $_PUT);
+                    } elseif (isset($path[4])) {
+                        if (method_exists($controller, $path[4])) {
+                            $method = $path[4];
+                            $controller->$method();
+                        } else {
+                            throw new \Exception("Méthode inexistante en PUT", 404);
+                        }
+                    } else {
+                        throw new \Exception("Method not found", 404);
                     }
                     break;
                 case 'DELETE':
@@ -53,24 +81,9 @@ final class Routeur {
                     }
                     break;
                 default:
-                    throw new \Exception("Request non autorisé", 404);
+                    throw new \Exception("Request non autorisée", 403);
                     break;
             }
-
-            if (isset($path[4])) {
-                if (is_numeric($path[4])) {
-                    $method = "getOne";
-                    $param = $path[4];
-                } elseif (method_exists($controller, $path[4])) {
-                    $method = $path[4];
-                } else {
-                    throw new \Exception("Méthode inexistante", 404);
-                }
-            } else {
-                $method = "getAll";
-            }
-
-            $controller->$method($param);
 
         } catch (\Exception $e) {
             self::jsonResponse($e->getMessage(), $e->getCode());
