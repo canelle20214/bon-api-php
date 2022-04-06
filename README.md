@@ -1,6 +1,12 @@
 # <center>BON' API</center>
 
-### Install local API (PHP 8.1)
+### PHP Version
+Make sure you have the php version **8.0**
+```bash
+$ php -v
+```
+
+### Install local API
 
 #### 1. Install dependencies (with composer)
 ```bash
