@@ -12,6 +12,6 @@ use Core\Model\DefaultModel;
  */
 class NumeroTableModel extends DefaultModel {
 
-    protected string $table = 'numero_de_table';
+    protected string $table = 'tables';
     protected string $entity = 'NumeroTable';
 }
