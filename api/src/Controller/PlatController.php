@@ -7,7 +7,9 @@ use Core\Controller\DefaultController;
 
 final class PlatController extends DefaultController{
 
-    private $model;
+    private PlatModel $model;
+
+    private array $security;
 
     public function __construct()
     {
@@ -44,9 +46,13 @@ final class PlatController extends DefaultController{
      */
     public function save(array $data)
     {
-        $lastId = $this->model->save($data);
-        $plat = $this->model->find($lastId);
-        $this->jsonResponse($plat, 201);
+        if ($this->security['role'] == "admin") {
+            $lastId = $this->model->save($data);
+            $plat = $this->model->find($lastId);
+            $this->jsonResponse($plat, 201);
+        } else {
+            throw new \Exception("Vous n'avez pas les droits", 403);
+        }
     }
 
     /**

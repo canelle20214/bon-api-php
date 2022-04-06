@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Model\AdminModel;
+use App\Security\JWTSecurity;
 use Core\Controller\DefaultController;
 
 final class AdminController extends DefaultController{
@@ -18,12 +19,11 @@ final class AdminController extends DefaultController{
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $admin = $this->model->findOneBy(["mail" => $data['mail']]);
             if ($admin && password_verify($data['password'], $admin->getPassword())) {
-                // $token = (new JWTSecurity)->sendToken($admin);
-                self::jsonResponse("Ok", 200);
+                $token = (new JWTSecurity)->sendToken($admin);
+                self::jsonResponse($token, 200);
             }else{
                 self::jsonResponse("Unauthorized", 403);
             }
-
         } else {
             throw new \Exception("Invalid request method", 404);
             
