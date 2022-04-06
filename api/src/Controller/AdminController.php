@@ -24,6 +24,7 @@ final class AdminController extends DefaultController{
             }else{
                 self::jsonResponse("Unauthorized", 403);
             }
+
         } else {
             throw new \Exception("Invalid request method", 404);
             
