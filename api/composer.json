@@ -7,7 +7,9 @@
     },
     "require": {
         "php": ">=8",
-        "firebase/php-jwt": "^6.1",
+        "firebase/php-jwt": "^6.1"
+    },
+    "require-dev": {
         "zircote/swagger-php": "^4.2"
     }
 }
