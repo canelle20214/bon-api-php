@@ -34,17 +34,25 @@ paths:
         - Plat
       operationId: 8cceb4489d1a0aebc341ab344d476e97
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              required:
-                - name
               properties:
                 name:
                   type: string
-                  example: 'nom du plat'
+                prix:
+                  type: number
+                  format: float
+                image:
+                  type: string
+                description:
+                  type: string
               type: object
+              example:
+                name: 'Nom du plat'
+                prix: 'Prix du plat'
+                image: 'Image u plat'
+                description: 'Descripion du plat'
       responses:
         '201':
           description: 'Retourne le plat nouvellement crée'
