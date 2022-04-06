@@ -37,6 +37,11 @@ paths:
         content:
           application/json:
             schema:
+              required:
+                - name
+                - prix
+                - prix
+                - description
               properties:
                 name:
                   type: string
