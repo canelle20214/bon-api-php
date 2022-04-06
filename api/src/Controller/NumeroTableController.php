@@ -2,6 +2,9 @@
 namespace App\Controller;
 
 use App\Model\NumeroTableModel;
+
+use App\Security\JWTSecurity;
+
 use Core\Controller\DefaultController;
 
 final class NumeroTableController extends DefaultController{
@@ -11,6 +14,8 @@ final class NumeroTableController extends DefaultController{
     public function __construct()
     {
         $this->model = new NumeroTableModel;
+
+        (new JWTSecurity)->verifyToken();
     }
 
     /**

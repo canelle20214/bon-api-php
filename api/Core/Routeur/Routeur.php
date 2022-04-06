@@ -2,6 +2,7 @@
 
 namespace Core\Routeur;
 
+use App\Security\JWTSecurity;
 use Core\Trait\JsonTrait;
 
 final class Routeur
@@ -46,7 +47,7 @@ final class Routeur
                         if (isset($path[4])) {
                             if (method_exists($controller, $path[4])) {
                                 $method = $path[4];
-                                $controller->$method();
+                                $controller->$method($_POST);
                             } else {
                                 throw new \Exception("Méthode inéxistante en POST", 404);
                             }
