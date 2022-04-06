@@ -9,7 +9,7 @@ use Exception;
 
 /**
  * @OA\Info(title="Bon-API", version="v0")
- * @OA\Server(url="localhost:8000")
+ * @OA\Server(url="http://localhost:8000/api/v0")
  * @OA\Tag(
  *  name="Plat",
  *  description="Routes liées aux plats"
