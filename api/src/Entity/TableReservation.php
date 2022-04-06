@@ -8,15 +8,15 @@ use JsonSerializable;
 final class TableReservation extends DefaultEntity implements JsonSerializable
 {
     private int $id;
-    private Reservation $reservation_id;
-    private NumeroTable $numero_de_table_id;
+    private int $reservation_id;
+    private int $tables_id;
 
     public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,
             'reservation_id' => $this->reservation_id,
-            "numero_de_table_id" => $this->numero_de_table_id
+            "tables_id" => $this->tables_id
         ];
     }
 
@@ -30,26 +30,26 @@ final class TableReservation extends DefaultEntity implements JsonSerializable
         return $this->id;
     }
 
-    public function getReservation(): Reservation
+    public function getReservation(): int
     {
         return $this->reservation_id;
     }
 
-    public function setReservation(Reservation $reservation_id): self
+    public function setReservation(int $reservation_id): self
     {
         $this->reservation_id = $reservation_id;
 
         return $this;
     }
 
-    public function getTables(): NumeroTable
+    public function getTables(): int
     {
-        return $this->numero_de_table_id;
+        return $this->tables_id;
     }
 
-    public function setTables(NumeroTable $numero_de_table_id): self
+    public function setTables(int $tables_id): self
     {
-        $this->numero_de_table_id = $numero_de_table_id;
+        $this->tables_id = $tables_id;
 
         return $this;
     }
