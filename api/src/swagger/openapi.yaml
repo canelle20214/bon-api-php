@@ -40,7 +40,7 @@ paths:
               required:
                 - name
                 - prix
-                - prix
+                - image
                 - description
               properties:
                 name:

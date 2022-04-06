@@ -106,7 +106,7 @@ final class PlatController extends DefaultController{
      *      @OA\MediaType(
      *          mediaType="application/json",
      *          @OA\Schema(
-     *              required={"name", "prix", "prix", "description"},
+     *              required={"name", "prix", "image", "description"},
      *              @OA\Property(
      *                  property="name",
      *                  type="string",
