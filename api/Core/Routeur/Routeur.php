@@ -2,7 +2,6 @@
 
 namespace Core\Routeur;
 
-use App\Security\JWTSecurity;
 use Core\Trait\JsonTrait;
 
 final class Routeur
@@ -75,11 +74,7 @@ final class Routeur
                     break;
                 case 'DELETE':
                     if (isset($path[4]) && is_numeric($path[4])) {
-//                        if ( !$controller->findOne($path[4]) /*"id ne corresponds a aucun plat"*/) {
-//                            throw new \Exception("L'ID ne correspond a aucun plat", 404);
-//                        } else {
                             $controller->delete($path[4]);
-//                        }
                     }
                     break;
                 default:
