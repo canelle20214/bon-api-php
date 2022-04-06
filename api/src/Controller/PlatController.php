@@ -5,7 +5,7 @@ use App\Model\PlatModel;
 use App\Security\JWTSecurity;
 use Core\Controller\DefaultController;
 use Exception;
-use OpenApi\Annotations as OA;
+//use OpenApi\Annotations as OA;
 
 /**
  * @OA\Info(title="Bon-API", version="v0")
@@ -123,7 +123,7 @@ final class PlatController extends DefaultController{
      *                  property="description",
      *                  type="string"
      *              ),
-     *              example={"name": "Nom du plat", "prix": "Prix du plat", "image": "Image u plat", "description": "Descripion du plat"}
+     *              example={"name": "Nom du plat", "prix": "Prix du plat", "image": "Image d un plat", "description": "Descripion du plat"}
      *          )
      *      ),
      *  ),
@@ -167,15 +167,29 @@ final class PlatController extends DefaultController{
      *      )
      *  ),
      *  @OA\RequestBody(
-     *       @OA\JsonContent(
-     *          required={"name"},
-     *          @OA\Property(
-     *              property="name",
-     *              type="string",
-     *              example="nom du plat"
+     *      @OA\MediaType(
+     *          mediaType="application/json",
+     *          @OA\Schema(
+     *              required={"name", "prix", "image", "description"},
+     *              @OA\Property(
+     *                  property="name",
+     *                  type="string",
+     *              ),
+     *              @OA\Property(
+     *                  property="prix",
+     *                  type="float"
+     *              ),
+     *              @OA\Property(
+     *                  property="image",
+     *                  type="string"
+     *              ),
+     *              @OA\Property(
+     *                  property="description",
+     *                  type="string"
+     *              ),
+     *              example={"name": "Nom du plat", "prix": "Prix du plat", "image": "Image d un plat", "description": "Descripion du plat"}
      *          )
      *      ),
-     *      required=true
      *  ),
      *  @OA\Response(
      *      response=200,

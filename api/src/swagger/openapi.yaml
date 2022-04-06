@@ -56,7 +56,7 @@ paths:
               example:
                 name: 'Nom du plat'
                 prix: 'Prix du plat'
-                image: 'Image u plat'
+                image: 'Image d un plat'
                 description: 'Descripion du plat'
       responses:
         '201':
@@ -98,17 +98,30 @@ paths:
           schema:
             type: integer
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               required:
                 - name
+                - prix
+                - image
+                - description
               properties:
                 name:
                   type: string
-                  example: 'nom du plat'
+                prix:
+                  type: number
+                  format: float
+                image:
+                  type: string
+                description:
+                  type: string
               type: object
+              example:
+                name: 'Nom du plat'
+                prix: 'Prix du plat'
+                image: 'Image d un plat'
+                description: 'Descripion du plat'
       responses:
         '200':
           description: 'Suppression réussie'
