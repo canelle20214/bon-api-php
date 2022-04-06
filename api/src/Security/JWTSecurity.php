@@ -23,10 +23,13 @@ class JWTSecurity {
         return JWT::encode($this->payload, $this->key, $this->algo);
     }
 
-    public function verifyToken(): bool {
+    /**
+     * @return array|bool
+     * @throws \Exception
+     */
+    public function verifyToken(): array | bool {
         if (isset($_COOKIE['token']) && !empty($_COOKIE['token'])) {
             $token = $_COOKIE['token'];
-            JWT::$leeway = 60;
             $decode = JWT::decode($token, new Key($this->key, $this->algo));
             if ($decode) {
                 return (array) $decode;
