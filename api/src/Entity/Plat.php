@@ -1,41 +1,41 @@
 <?php
 namespace App\Entity;
 
+use OpenApi\Attributes as OA;
 use Core\Entity\DefaultEntity;
 use JsonSerializable;
 
+#[OA\Schema()]
 final class Plat extends DefaultEntity implements JsonSerializable {
 
-    // php@8.1
     /**
      * @var int
      */
-    //private readonly int $id;
-
-    // php@8.0
-    /**
-     * @var int
-     */
+    #[OA\Property(type:"int", property:"id", nullable:false)]
     private int $id;
 
     /**
      * @var string
      */
+    #[OA\Property(property:"nom", type:"string", nullable:false, maximum:100, example:"Nom du plat")]
     private string $nom;
 
     /**
      * @var float
      */
+    #[OA\Property(property:"prix", type:"float", nullable:false, maximum:100, example:"Prix du plat")]
     private float $prix;
 
     /**
      * @var string
      */
+    #[OA\Property(property:"image", type:"string", nullable:false, maximum:100, example:"Image du plat")]
     private string $image;
 
     /**
      * @var string
      */
+    #[OA\Property(property:"description", type:"string", nullable:false, maximum:100, example:"Description du plat")]
     private string $description;
 
     /**

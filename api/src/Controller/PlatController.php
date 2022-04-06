@@ -4,7 +4,17 @@ namespace App\Controller;
 use App\Model\PlatModel;
 use App\Security\JWTSecurity;
 use Core\Controller\DefaultController;
+use Exception;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\Info(title="Bon-API", version="v0")
+ * @OA\Server(url="localhost:8000")
+ * @OA\Tag(
+ *  name="Plat",
+ *  description="Routes liées aux plats"
+ * )
+ */
 final class PlatController extends DefaultController{
 
     private PlatModel $model;
@@ -18,7 +28,30 @@ final class PlatController extends DefaultController{
     }
 
     /**
-     * @return void
+     * @OA\Get(
+     *  path="/plat",
+     *  tags={"Plat"},
+     *  @OA\Response(
+     *      response=200,
+     *      description="Retourne l'ensemble des plats",
+     *      @OA\JsonContent(
+     *          description="Contenu de notre menu",
+     *          type="array",
+     *          @OA\Items(
+     *              ref="#/components/schemas/Plat"
+     *          )
+     *      )
+     *  ),
+     *  @OA\Response(
+     *      response=404,
+     *      description="Erreur de récupération",
+     *      @OA\JsonContent(
+     *          description="Message d'erreur",
+     *          type="string",
+     *          example="Une erreur s'est produite"
+     *      )
+     *  )
+     * )
      */
     public function getAll()
     {
@@ -29,6 +62,28 @@ final class PlatController extends DefaultController{
     /**
      * @param int $id
      * @return void
+     *
+     * @OA\Get(
+     *  path="/plat/{id}",
+     *  tags={"Plat"},
+     *  @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      description="ID du plat",
+     *      required=true,
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *  ),
+     *  @OA\Response(
+     *      response=200,
+     *      description="Retourne un plat en fonction de son ID",
+     *      @OA\JsonContent(
+     *          type="Plat",
+     *          ref="#/components/schemas/Plat"
+     *      )
+     *  )
+     * )
      */
     public function getOne(int $id)
     {
@@ -43,6 +98,31 @@ final class PlatController extends DefaultController{
     /**
      * @param array $data
      * @return void
+     *
+     * @OA\Post(
+     *  path="/plat",
+     *  tags={"Plat"},
+     *  @OA\RequestBody(
+     *      @OA\JsonContent(
+     *          required={"name"},
+     *          @OA\Property(
+     *              property="name",
+     *              type="string",
+     *              example="nom du plat"
+     *          )
+     *      ),
+     *      required=true
+     *  ),
+     *  @OA\Response(
+     *      response=201,
+     *      description="Retourne le plat nouvellement crée",
+     *      @OA\JsonContent(
+     *          type="Plat",
+     *          ref="#/components/schemas/Plat"
+     *      )
+     *  )
+     * )
+     * @throws Exception
      */
     public function save(array $data)
     {
@@ -51,7 +131,7 @@ final class PlatController extends DefaultController{
             $plat = $this->model->find($lastId);
             $this->jsonResponse($plat, 201);
         } else {
-            throw new \Exception("Vous n'avez pas les droits", 403);
+            throw new Exception("Vous n'avez pas les droits", 403);
         }
     }
 
@@ -59,6 +139,38 @@ final class PlatController extends DefaultController{
      * @param int $id
      * @param array $data
      * @return void
+     *
+     * @OA\Put(
+     *  path="/plat/{id}",
+     *  tags={"Plat"},
+     *  @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      description="ID du plat à modifier",
+     *      required=true,
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *  ),
+     *  @OA\RequestBody(
+     *       @OA\JsonContent(
+     *          required={"name"},
+     *          @OA\Property(
+     *              property="name",
+     *              type="string",
+     *              example="nom du plat"
+     *          )
+     *      ),
+     *      required=true
+     *  ),
+     *  @OA\Response(
+     *      response=200,
+     *      description="Suppression réussie",
+     *      @OA\JsonContent(
+     *          type="string"
+     *      )
+     *  )
+     * )
      */
     public function update(int $id, array $data) {
         $this->model->update($id, $data);
@@ -68,6 +180,27 @@ final class PlatController extends DefaultController{
     /**
      * @param int $id
      * @return void
+     *
+     * @OA\Delete(
+     *  path="/plat/{id}",
+     *  tags={"Plat"},
+     *  @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      description="ID du plat",
+     *      required=true,
+     *      @OA\Schema(
+     *          type="integer"
+     *      )
+     *  ),
+     *  @OA\Response(
+     *      response=200,
+     *      description="Suppression réussie",
+     *      @OA\JsonContent(
+     *          type="string"
+     *      )
+     *  )
+     * )
      */
     public function delete(int $id) {
         $plat = $this->model->find($id);
