@@ -71,7 +71,7 @@ class DefaultModel extends Database{
         if (!empty($criteria)) {
             $statement .= "WHERE ";
             foreach ($criteria as $key => $value) {
-                $statement .= "$key = $value AND ";
+                $statement .= "$key = \"$value\" AND ";
             }
         }
 
