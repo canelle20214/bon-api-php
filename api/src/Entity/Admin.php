@@ -4,18 +4,33 @@ namespace App\Entity;
 use Core\Entity\DefaultEntity;
 use JsonSerializable;
 
+/**
+ * @OA\Schema()
+ */
 final class Admin extends DefaultEntity implements JsonSerializable{
 
-    // php@8.1
-    // private readonly int $id;
-
-    // php@8.0
+    /**
+     * @var int
+     * @OA\Property(type="integer", property="id", nullable=false)
+     */
     private int $id;
 
+    /**
+     * @var string
+     * @OA\Property(type="string", property="nom", nullable=false)
+     */
     private string $nom;
 
+    /**
+     * @var string
+     * @OA\Property(type="string", property="mail", nullable=false)
+     */
     private string $mail;
-    
+
+    /**
+     * @var string
+     * @OA\Property(type="string", property="password", nullable=false)
+     */
     private string $password;
 
     public function jsonSerialize(): mixed

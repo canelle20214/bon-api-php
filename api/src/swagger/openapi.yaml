@@ -6,6 +6,29 @@ servers:
   -
     url: 'http://localhost:8000/api/v0'
 paths:
+  /admin:
+    get:
+      tags:
+        - Admin
+      operationId: 89bbad68b14e55e85eb06cf5c3f28790
+      responses:
+        '200':
+          description: 'Retourne l ensemble des admins'
+          content:
+            application/json:
+              schema:
+                description: 'Liste des admins'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Admin'
+        '404':
+          description: 'Erreur de récupération'
+          content:
+            application/json:
+              schema:
+                description: 'Message d erreur'
+                type: string
+              example: 'Une erreur s est produite'
   /plat:
     get:
       tags:
@@ -13,7 +36,7 @@ paths:
       operationId: 53896f8196bd7d3e7b7bbc23b49edeac
       responses:
         '200':
-          description: 'Retourne l''ensemble des plats'
+          description: 'Retourne l ensemble des plats'
           content:
             application/json:
               schema:
@@ -26,9 +49,9 @@ paths:
           content:
             application/json:
               schema:
-                description: 'Message d''erreur'
+                description: 'Message d erreur'
                 type: string
-              example: 'Une erreur s''est produite'
+              example: 'Une erreur s est produite'
     post:
       tags:
         - Plat
@@ -150,6 +173,21 @@ paths:
                 type: string
 components:
   schemas:
+    Admin:
+      properties:
+        id:
+          type: integer
+          nullable: false
+        nom:
+          type: string
+          nullable: false
+        mail:
+          type: string
+          nullable: false
+        password:
+          type: string
+          nullable: false
+      type: object
     Plat:
       properties:
         id:
@@ -170,6 +208,9 @@ components:
           nullable: false
       type: object
 tags:
+  -
+    name: Admin
+    description: 'Routes liées aux admins'
   -
     name: Plat
     description: 'Routes liées aux plats'

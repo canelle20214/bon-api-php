@@ -1,7 +1,6 @@
 <?php
 namespace App\Entity;
 
-use OpenApi\Attributes as OA;
 use Core\Entity\DefaultEntity;
 use JsonSerializable;
 

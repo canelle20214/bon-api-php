@@ -5,7 +5,6 @@ use App\Model\PlatModel;
 use App\Security\JWTSecurity;
 use Core\Controller\DefaultController;
 use Exception;
-//use OpenApi\Annotations as OA;
 
 /**
  * @OA\Info(title="Bon-API", version="v0")
@@ -33,7 +32,7 @@ final class PlatController extends DefaultController{
      *  tags={"Plat"},
      *  @OA\Response(
      *      response=200,
-     *      description="Retourne l'ensemble des plats",
+     *      description="Retourne l ensemble des plats",
      *      @OA\JsonContent(
      *          description="Contenu de notre menu",
      *          type="array",
@@ -46,9 +45,9 @@ final class PlatController extends DefaultController{
      *      response=404,
      *      description="Erreur de récupération",
      *      @OA\JsonContent(
-     *          description="Message d'erreur",
+     *          description="Message d erreur",
      *          type="string",
-     *          example="Une erreur s'est produite"
+     *          example="Une erreur s est produite"
      *      )
      *  )
      * )

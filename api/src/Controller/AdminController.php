@@ -5,9 +5,15 @@ use App\Model\AdminModel;
 use App\Security\JWTSecurity;
 use Core\Controller\DefaultController;
 
+/**
+ * @OA\Tag(
+ *  name="Admin",
+ *  description="Routes liées aux admins"
+ * )
+ */
 final class AdminController extends DefaultController{
 
-    private $model;
+    private AdminModel $model;
 
     public function __construct()
     {
@@ -31,6 +37,32 @@ final class AdminController extends DefaultController{
         }
     }
 
+    /**
+     * @OA\Get(
+     *  path="/admin",
+     *  tags={"Admin"},
+     *  @OA\Response(
+     *      response=200,
+     *      description="Retourne l ensemble des admins",
+     *      @OA\JsonContent(
+     *          description="Liste des admins",
+     *          type="array",
+     *          @OA\Items(
+     *              ref="#/components/schemas/Admin"
+     *          )
+     *      )
+     *  ),
+     *  @OA\Response(
+     *      response=404,
+     *      description="Erreur de récupération",
+     *      @OA\JsonContent(
+     *          description="Message d erreur",
+     *          type="string",
+     *          example="Une erreur s est produite"
+     *      )
+     *  )
+     * )
+     */
     public function getAll()
     {
         $data = $this->model->findAll();
