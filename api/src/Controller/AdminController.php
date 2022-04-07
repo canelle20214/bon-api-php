@@ -60,7 +60,6 @@ final class AdminController extends DefaultController{
      *  )
      * )
      */
-
     public function login (array $data)
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
