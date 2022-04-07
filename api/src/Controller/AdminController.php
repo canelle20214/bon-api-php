@@ -105,6 +105,9 @@ final class AdminController extends DefaultController{
      */
     public function getAll()
     {
+        // To block getAll() if not JWT Token
+        (new JWTSecurity)->verifyToken();
+
         $data = $this->model->findAll();
         $this->jsonResponse($data, 200);
     }
