@@ -23,7 +23,8 @@ const Provider = ({children}) => {
                 setPlats(data);
                 setLoading(false);
             }catch(err){
-                setError(true);
+                setPlats([]);
+                setLoading(false);
             }
         }
         fetchPlats();

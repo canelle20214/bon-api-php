@@ -2,7 +2,7 @@ import {ClientHeader, Plats} from '../components';
 
 const Home = () => {
   return <>
-    <ClientHeader />
+    <ClientHeader/>
     <Plats titre="Plats"/>
   </>
 }
