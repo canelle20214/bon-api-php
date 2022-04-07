@@ -30,7 +30,7 @@ final class PlatController extends DefaultController{
     public function __construct()
     {
         $this->model = new PlatModel;
-        (new JWTSecurity)->verifyToken();
+        // (new JWTSecurity)->verifyToken();
     }
 
     /**
@@ -150,6 +150,7 @@ final class PlatController extends DefaultController{
         if ($this->security['role'] == "admin") {
             $lastId = $this->model->save($data);
             $plat = $this->model->find($lastId);
+            (new JWTSecurity)->verifyToken();
             $this->jsonResponse($plat, 201);
         } else {
             throw new Exception("Vous n'avez pas les droits", 403);
@@ -210,6 +211,7 @@ final class PlatController extends DefaultController{
      */
     public function update(int $id, array $data) {
         $this->model->update($id, $data);
+        (new JWTSecurity)->verifyToken();
         $this->jsonResponse("Plat modifié", 201);
     }
 
@@ -243,6 +245,7 @@ final class PlatController extends DefaultController{
         $plat = $this->model->find($id);
         if ($plat) {
             $this->model->delete($id);
+            (new JWTSecurity)->verifyToken();
             $this->jsonResponse("Plat supprimé", 200);
         } else {
             $this->jsonResponse("Ce plat n'existe pas/plus", 200);

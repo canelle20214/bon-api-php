@@ -264,3 +264,6 @@ tags:
   -
     name: Plat
     description: 'Routes liées aux plats'
+
+security:
+  - bearerAuth: []
