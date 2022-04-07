@@ -207,6 +207,13 @@ components:
           type: string
           nullable: false
       type: object
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: 'JWT authentification'
+      scheme: bearer   
+      bearerFormat: JWT
 tags:
   -
     name: Admin
@@ -214,3 +221,6 @@ tags:
   -
     name: Plat
     description: 'Routes liées aux plats'
+
+security:
+  - bearerAuth: []
