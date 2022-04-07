@@ -1,16 +1,15 @@
 import admin from "../../src/services/Admin"
+
 const Inscription = () => {
 
-  const login = (event)=>{
+  const postUser = (event)=>{
     event.preventDefault()
+    const nom = document.querySelector("#nom").value
     const mail = document.querySelector("#email-address").value
     const password = document.querySelector("#password").value
-    const token = admin.verif(mail,password)
-    if(token){
-      // Set a cookie
-      
-  }
-    
+    admin.post(nom,mail,password)
+
+    console.log("nom",nom)
     console.log("mail",mail)
     console.log("password",password)
   }
@@ -27,6 +26,10 @@ const Inscription = () => {
         <input type="hidden" name="remember" value="true" />
         <div className="rounded-md shadow-sm -space-y-px">
           <div>
+            <label for="nom" className="sr-only">Adresse mail</label>
+            <input id="nom" name="nom"  autocomplete="nom" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-stone-300 placeholder-stone-500 text-stone-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Nom" />
+          </div>
+          <div>
             <label for="email-address" className="sr-only">Adresse mail</label>
             <input id="email-address" name="email"  autocomplete="email" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-stone-300 placeholder-stone-500 text-stone-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Adresse mail" />
           </div>
@@ -36,7 +39,7 @@ const Inscription = () => {
           </div>
         </div>
         <div>
-          <button onClick={(event)=>{login(event)}} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <button onClick={(event)=>{postUser(event)}} type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             <span className="absolute left-0 inset-y-0 flex items-center pl-3">
               <svg className="h-5 w-5 text-orange-300 group-hover:text-orange-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />

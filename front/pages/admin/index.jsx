@@ -1,9 +1,11 @@
-import {AdminHeader, Inscription} from '../../components';
+import {AdminHeader, Connexion, Inscription} from '../../components';
+import { useContext } from 'react'
+import BonApiContext from '../../contexts/BonApiContext';
 
 const Admin = () => {
+  const {connexion} = useContext(BonApiContext)
   return <>
-    <AdminHeader/>
-    <Inscription/>
+    {connexion?<div><AdminHeader/> <Inscription/></div>:<Connexion/>}
   </>
 }
 

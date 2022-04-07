@@ -79,17 +79,20 @@ final class AdminController extends DefaultController{
     {
         $params['password'] = password_hash($params["password"], PASSWORD_DEFAULT);
         $this->model->save($params);
+        (new JWTSecurity)->verifyToken();
         self::jsonResponse("Admin crée", 201);
     }
 
     public function update(int $id, array $params){
         $lastId = $this->model->update($id, $params);
         $data = $this->model->find($lastId);
+        (new JWTSecurity)->verifyToken();
         $this->jsonResponse($data, 200);
     }
 
     public function delete(int $id){
         $this->model->delete($id);
+        (new JWTSecurity)->verifyToken();
         $this->jsonResponse("Administrateur supprimé.", 204);
     }
 }

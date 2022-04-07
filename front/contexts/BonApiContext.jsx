@@ -10,7 +10,12 @@ const Provider = ({children}) => {
     const [reservations, setReservations] = useState([]);
     const [commandes, setCommandes] = useState([]);
     const [tables, setTables] = useState([]);
+    const [connexion,setConnexion] = useState(false);
     const router = useRouter();
+
+    const connexionSet = (val) => {
+        setConnexion(val)
+    }
     
     useEffect(() => {
         const fetchPlats = async () => {
@@ -108,7 +113,7 @@ const Provider = ({children}) => {
     if(loading){
         return "loading...";
     }
-    return <BonApiContext.Provider value={{plats, reservations, commandes, tables}}>{children}</BonApiContext.Provider>;
+    return <BonApiContext.Provider value={{plats, reservations, commandes, tables,connexion,connexionSet}}>{children}</BonApiContext.Provider>;
 }
 
 export default BonApiContext;

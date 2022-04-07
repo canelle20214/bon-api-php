@@ -51,9 +51,9 @@ final class Routeur
                                 throw new \Exception("Méthode inéxistante en POST", 404);
                             }
                         } 
-                        if(empty($_POST["nom"]) && !empty($_POST["mail"]) && !empty($_POST["password"])){
-                            $controller->login($_POST);
-                        }
+                        // if(empty($_POST["nom"]) && !empty($_POST["mail"]) && !empty($_POST["password"])){
+                        //     $controller->login($_POST);
+                        // }
                         else {
                             $controller->save($_POST);
                         }
