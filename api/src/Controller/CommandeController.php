@@ -12,7 +12,7 @@ final class CommandeController extends DefaultController{
     public function __construct()
     {
         $this->model = new CommandeModel;
-        (new JWTSecurity)->verifyToken();
+        // (new JWTSecurity)->verifyToken();
     }
 
     public function getAll()
@@ -32,17 +32,20 @@ final class CommandeController extends DefaultController{
     {
         $lastId = $this->model->save($params);
         $data = $this->model->find($lastId);
+        (new JWTSecurity)->verifyToken();
         $this->jsonResponse($data, 201);
     }
 
     public function update(int $id, array $params){
         $lastId = $this->model->update($id, $params);
         $data = $this->model->find($lastId);
+        (new JWTSecurity)->verifyToken();
         $this->jsonResponse($data, 200);
     }
 
     public function delete(int $id){
         $this->model->delete($id);
+        (new JWTSecurity)->verifyToken();
         $this->jsonResponse("Commande supprimée.", 204);
     }
 }
