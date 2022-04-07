@@ -20,6 +20,47 @@ final class AdminController extends DefaultController{
         $this->model = new AdminModel;
     }
 
+    /**
+     * @OA\Post(
+     *  path="/admin/login",
+     *  tags={"Admin"},
+     *  @OA\RequestBody(
+     *      @OA\MediaType(
+     *          mediaType="application/json",
+     *          @OA\Schema(
+     *              required={"mail", "password"},
+     *              @OA\Property(
+     *                  property="mail",
+     *                  type="string",
+     *              ),
+     *              @OA\Property(
+     *                  property="password",
+     *                  type="string"
+     *              ),
+     *              example={"mail": "monamil@gmail.com", "password": "123456789"}
+     *          )
+     *      ),
+     *  ),
+     *  @OA\Response(
+     *      response=201,
+     *      description="Retourne l\'admin créé.",
+     *      @OA\JsonContent(
+     *          type="Admin",
+     *          ref="#/components/schemas/Admin"
+     *      )
+     *  ),
+     *  @OA\Response(
+     *      response=404,
+     *      description="Erreur de récupération",
+     *      @OA\JsonContent(
+     *          description="Message d erreur",
+     *          type="string",
+     *          example="Une erreur s est produite"
+     *      )
+     *  )
+     * )
+     */
+
     public function login (array $data)
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {

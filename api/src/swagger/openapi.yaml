@@ -6,6 +6,42 @@ servers:
   -
     url: 'http://localhost:8000/api/v0'
 paths:
+  /admin/login:
+    post:
+      tags:
+        - Admin
+      operationId: e53e573f1f1f3710234d480ededf07f6
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - mail
+                - password
+              properties:
+                mail:
+                  type: string
+                password:
+                  type: string
+              type: object
+              example:
+                mail: monamil@gmail.com
+                password: '123456789'
+      responses:
+        '201':
+          description: 'Retourne l\''admin créé.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Admin'
+        '404':
+          description: 'Erreur de récupération'
+          content:
+            application/json:
+              schema:
+                description: 'Message d erreur'
+                type: string
+              example: 'Une erreur s est produite'
   /admin:
     get:
       tags:
@@ -88,6 +124,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Plat'
+      security:
+        -
+          Authentication: []
   '/plat/{id}':
     get:
       tags:
@@ -152,6 +191,9 @@ paths:
             application/json:
               schema:
                 type: string
+      security:
+        -
+          Authentication: []
     delete:
       tags:
         - Plat
@@ -171,6 +213,9 @@ paths:
             application/json:
               schema:
                 type: string
+      security:
+        -
+          Authentication: []
 components:
   schemas:
     Admin:
@@ -207,6 +252,11 @@ components:
           type: string
           nullable: false
       type: object
+  securitySchemes:
+    Authorization:
+      type: http
+      bearerFormat: JWT
+      scheme: bearer
 tags:
   -
     name: Admin

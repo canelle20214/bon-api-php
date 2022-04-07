@@ -29,7 +29,7 @@ final class PlatCommandeController extends DefaultController{
     public function getOne(int $id)
     {
         $platCommande = $this->model->find($id);
-        if ($plat) {
+        if ($platCommande) {
             $this->jsonResponse($platCommande, 200);
         } else {
             $this->jsonResponse("Cette commande n'existe pas", 404);
