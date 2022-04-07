@@ -81,7 +81,7 @@ final class TableReservationController extends DefaultController
      * @OA\Post(
      *  path="/tableReservation",
      *  tags={"Table Reservation"},
-     *  security={{"Authentication": {}}},
+     *  security={{"Authorization": {}}},
      *  @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="application/json",
@@ -134,7 +134,7 @@ final class TableReservationController extends DefaultController
      *          type="integer"
      *      )
      *  ),
-     *  security={{"Authentication": {}}},
+     *  security={{"Authorization": {}}},
      *  @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="application/json",
@@ -185,7 +185,7 @@ final class TableReservationController extends DefaultController
      *          type="integer"
      *      )
      *  ),
-     *  security={{"Authentication": {}}},
+     *  security={{"Authorization": {}}},
      *  @OA\Response(
      *      response=204,
      *      description="Table réservée supprimée",

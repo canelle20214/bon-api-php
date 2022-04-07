@@ -101,7 +101,7 @@ final class AdminController extends DefaultController{
      *          )
      *      )
      *  ),
-     *  security={{"Authentication": {}}}
+     *  security={{"Authorization": {}}}
      * )
      */
     public function getAll()
@@ -206,7 +206,7 @@ final class AdminController extends DefaultController{
      *          type="integer"
      *      )
      *  ),
-     *  security={{"Authentication": {}}},
+     *  security={{"Authorization": {}}},
      *  @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="application/json",
@@ -264,7 +264,7 @@ final class AdminController extends DefaultController{
      *          type="integer"
      *      )
      *  ),
-     *  security={{"Authentication": {}}},
+     *  security={{"Authorization": {}}},
      *  @OA\Response(
      *      response=204,
      *      description="Administrateur supprimé.",

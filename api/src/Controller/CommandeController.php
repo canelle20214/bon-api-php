@@ -140,7 +140,7 @@ final class CommandeController extends DefaultController{
      *          type="integer"
      *      )
      *  ),
-     *  security={{"Authentication": {}}},
+     *  security={{"Authorization": {}}},
      *  @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="application/json",
@@ -199,7 +199,7 @@ final class CommandeController extends DefaultController{
      *          type="integer"
      *      )
      *  ),
-     *  security={{"Authentication": {}}},
+     *  security={{"Authorization": {}}},
      *  @OA\Response(
      *      response=204,
      *      description="Suppression réussie",

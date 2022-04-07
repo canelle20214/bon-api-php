@@ -84,7 +84,7 @@ final class ReservationController extends DefaultController
      * @OA\Post(
      *  path="/reservation",
      *  tags={"Reservation"},
-     *  security={{"Authentication": {}}},
+     *  security={{"Authorization": {}}},
      *  @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="application/json",
@@ -141,7 +141,7 @@ final class ReservationController extends DefaultController
      *          type="integer"
      *      )
      *  ),
-     *  security={{"Authentication": {}}},
+     *  security={{"Authorization": {}}},
      *  @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="application/json",
@@ -196,7 +196,7 @@ final class ReservationController extends DefaultController
      *          type="integer"
      *      )
      *  ),
-     *  security={{"Authentication": {}}},
+     *  security={{"Authorization": {}}},
      *  @OA\Response(
      *      response=204,
      *      description="Réservation supprimée",

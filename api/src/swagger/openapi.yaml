@@ -59,7 +59,7 @@ paths:
                   $ref: '#/components/schemas/Admin'
       security:
         -
-          Authentication: []
+          Authorization: []
     post:
       tags:
         - Admin
@@ -157,7 +157,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
     delete:
       tags:
         - Admin
@@ -179,7 +179,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
   /commande:
     get:
       tags:
@@ -297,7 +297,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
     delete:
       tags:
         - Commande
@@ -319,7 +319,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
   /numeroTable:
     get:
       tags:
@@ -360,7 +360,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
   '/numeroTable/{id}':
     get:
       tags:
@@ -414,7 +414,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
     delete:
       tags:
         - Table
@@ -444,7 +444,7 @@ paths:
               example: 'Cette table n''existe pas/plus'
       security:
         -
-          Authentication: []
+          Authorization: []
   /platCommande:
     get:
       tags:
@@ -489,7 +489,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
   '/platCommande/{id}':
     get:
       tags:
@@ -547,7 +547,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
     delete:
       tags:
         - 'Plat Commande'
@@ -577,7 +577,7 @@ paths:
               example: 'Ce plat de la commande n''existe pas/plus'
       security:
         -
-          Authentication: []
+          Authorization: []
   /plat:
     get:
       tags:
@@ -631,7 +631,7 @@ paths:
                 $ref: '#/components/schemas/Plat'
       security:
         -
-          Authentication: []
+          Authorization: []
   '/plat/{id}':
     get:
       tags:
@@ -698,7 +698,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
     delete:
       tags:
         - Plat
@@ -728,7 +728,7 @@ paths:
               example: 'Ce plat n''existe pas/plus'
       security:
         -
-          Authentication: []
+          Authorization: []
   /reservation:
     get:
       tags:
@@ -777,7 +777,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
   '/reservation/{id}':
     get:
       tags:
@@ -839,7 +839,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
     delete:
       tags:
         - Reservation
@@ -861,7 +861,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
   /tableReservation:
     get:
       tags:
@@ -906,7 +906,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
   '/tableReservation/{id}':
     get:
       tags:
@@ -964,7 +964,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
     delete:
       tags:
         - 'Table Reservation'
@@ -986,7 +986,7 @@ paths:
                 type: string
       security:
         -
-          Authentication: []
+          Authorization: []
 components:
   schemas:
     Admin:

@@ -80,7 +80,7 @@ final class NumeroTableController extends DefaultController{
      * @OA\Post(
      *  path="/numeroTable",
      *  tags={"Table"},
-     *  security={{"Authentication": {}}},
+     *  security={{"Authorization": {}}},
      *  @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="application/json",
@@ -129,7 +129,7 @@ final class NumeroTableController extends DefaultController{
      *          type="integer"
      *      )
      *  ),
-     *  security={{"Authentication": {}}},
+     *  security={{"Authorization": {}}},
      *  @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="application/json",
@@ -175,7 +175,7 @@ final class NumeroTableController extends DefaultController{
      *          type="integer"
      *      )
      *  ),
-     *  security={{"Authentication": {}}},
+     *  security={{"Authorization": {}}},
      *  @OA\Response(
      *      response=204,
      *      description="Suppression réussie",
