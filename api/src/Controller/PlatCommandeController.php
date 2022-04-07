@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Model\PlatCommandeModel;
 use Core\Controller\DefaultController;
+use App\Security\JWTSecurity;
 
 final class PlatCommandeController extends DefaultController{
 
@@ -44,6 +45,7 @@ final class PlatCommandeController extends DefaultController{
     {
         $lastId = $this->model->save($data);
         $platCommande = $this->model->find($lastId);
+        (new JWTSecurity)->verifyToken();
         $this->jsonResponse($platCommande, 201);
     }
 
@@ -54,6 +56,7 @@ final class PlatCommandeController extends DefaultController{
      */
     public function update(int $id, array $data) {
         $this->model->update($id, $data);
+        (new JWTSecurity)->verifyToken();
         $this->jsonResponse("Commmande modifié", 201);
     }
 
@@ -65,6 +68,7 @@ final class PlatCommandeController extends DefaultController{
         $platCommande = $this->model->find($id);
         if ($platCommande) {
             $this->model->delete($id);
+            (new JWTSecurity)->verifyToken();
             $this->jsonResponse("Commande supprimé", 200);
         } else {
             $this->jsonResponse("Cette commande n'existe pas/plus", 200);
