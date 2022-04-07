@@ -65,6 +65,9 @@ paths:
                 description: 'Message d erreur'
                 type: string
               example: 'Une erreur s est produite'
+      security:
+        -
+          Authentication: []
   /plat:
     get:
       tags:

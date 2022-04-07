@@ -92,6 +92,7 @@ final class AdminController extends DefaultController{
      *          )
      *      )
      *  ),
+     *  security={{"Authentication": {}}},
      *  @OA\Response(
      *      response=404,
      *      description="Erreur de récupération",
