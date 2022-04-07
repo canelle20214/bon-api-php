@@ -121,7 +121,6 @@ final class PlatController extends DefaultController{
      *          )
      *      ),
      *  ),
-     *  security={{"Authentication": {}}},
      *  @OA\Response(
      *      response=201,
      *      description="Retourne le plat nouvellement crée",
@@ -157,7 +156,6 @@ final class PlatController extends DefaultController{
      *          type="integer"
      *      )
      *  ),
-     *  security={{"Authentication": {}}},
      *  @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="application/json",
@@ -215,7 +213,6 @@ final class PlatController extends DefaultController{
      *          type="integer"
      *      )
      *  ),
-     *  security={{"Authentication": {}}},
      *  @OA\Response(
      *      response=204,
      *      description="Plat supprimé",

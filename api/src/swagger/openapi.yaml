@@ -57,9 +57,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Admin'
-      security:
-        -
-          Authentication: []
     post:
       tags:
         - Admin
@@ -155,9 +152,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
     delete:
       tags:
         - Admin
@@ -177,9 +171,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
   /commande:
     get:
       tags:
@@ -295,9 +286,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
     delete:
       tags:
         - Commande
@@ -317,9 +305,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
   /numeroTable:
     get:
       tags:
@@ -358,9 +343,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
   '/numeroTable/{id}':
     get:
       tags:
@@ -412,9 +394,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
     delete:
       tags:
         - Table
@@ -442,9 +421,6 @@ paths:
                 description: 'Message d erreur'
                 type: string
               example: 'Cette table n''existe pas/plus'
-      security:
-        -
-          Authentication: []
   /platCommande:
     get:
       tags:
@@ -487,9 +463,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
   '/platCommande/{id}':
     get:
       tags:
@@ -545,9 +518,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
     delete:
       tags:
         - 'Plat Commande'
@@ -575,9 +545,6 @@ paths:
                 description: 'Message d erreur'
                 type: string
               example: 'Ce plat de la commande n''existe pas/plus'
-      security:
-        -
-          Authentication: []
   /plat:
     get:
       tags:
@@ -629,9 +596,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Plat'
-      security:
-        -
-          Authentication: []
   '/plat/{id}':
     get:
       tags:
@@ -696,9 +660,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
     delete:
       tags:
         - Plat
@@ -726,9 +687,6 @@ paths:
                 description: 'Message d erreur'
                 type: string
               example: 'Ce plat n''existe pas/plus'
-      security:
-        -
-          Authentication: []
   /reservation:
     get:
       tags:
@@ -775,9 +733,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
   '/reservation/{id}':
     get:
       tags:
@@ -837,9 +792,7 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
+
     delete:
       tags:
         - Reservation
@@ -859,9 +812,7 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
+
   /tableReservation:
     get:
       tags:
@@ -904,9 +855,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
   '/tableReservation/{id}':
     get:
       tags:
@@ -962,9 +910,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
     delete:
       tags:
         - 'Table Reservation'
@@ -984,9 +929,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
 components:
   schemas:
     Admin:
@@ -1102,11 +1044,6 @@ components:
             description: 'Message d erreur'
             type: string
           example: Unauthorized
-  securitySchemes:
-    Authorization:
-      type: http
-      bearerFormat: JWT
-      scheme: bearer
 tags:
   -
     name: Admin
