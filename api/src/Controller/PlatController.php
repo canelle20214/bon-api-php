@@ -25,12 +25,9 @@ final class PlatController extends DefaultController{
 
     private PlatModel $model;
 
-    private array $security;
-
     public function __construct()
     {
         $this->model = new PlatModel;
-        // (new JWTSecurity)->verifyToken();
     }
 
     /**
@@ -136,16 +133,11 @@ final class PlatController extends DefaultController{
      * )
      * @throws Exception
      */
-    public function save(array $data)
-    {
-        if ($this->security['role'] == "admin") {
-            $lastId = $this->model->save($data);
-            $plat = $this->model->find($lastId);
-            (new JWTSecurity)->verifyToken();
-            $this->jsonResponse($plat, 201);
-        } else {
-            throw new Exception("Vous n'avez pas les droits", 403);
-        }
+    public function save(array $data) {
+        (new JWTSecurity)->verifyToken();
+        $lastId = $this->model->save($data);
+        $plat = $this->model->find($lastId);
+        $this->jsonResponse($plat, 201);
     }
 
     /**
