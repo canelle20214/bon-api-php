@@ -231,9 +231,6 @@ paths:
             application/json:
               schema:
                 type: string
-      security:
-        -
-          Authentication: []
   '/commande/{id}':
     get:
       tags:
@@ -747,10 +744,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Reservation'
-    put:
+    post:
       tags:
         - Reservation
-      operationId: a15c4025f462c0ed2a1091e7193a264a
+      operationId: 57598c5a05524c7781e54ce32c9db67e
       requestBody:
         content:
           application/json:

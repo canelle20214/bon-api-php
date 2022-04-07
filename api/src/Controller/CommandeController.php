@@ -80,7 +80,6 @@ final class CommandeController extends DefaultController{
      * @OA\Post(
      *  path="/commande",
      *  tags={"Commande"},
-     *  security={{"Authentication": {}}},
      *  @OA\RequestBody(
      *      @OA\MediaType(
      *          mediaType="application/json",

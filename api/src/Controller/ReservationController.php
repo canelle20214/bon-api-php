@@ -81,7 +81,7 @@ final class ReservationController extends DefaultController
      * @param array $data
      * @return void
      *
-     * @OA\Put(
+     * @OA\Post(
      *  path="/reservation",
      *  tags={"Reservation"},
      *  security={{"Authentication": {}}},
