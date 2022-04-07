@@ -46,7 +46,7 @@ final class Routeur
                         if (isset($path[4])) {
                             if (method_exists($controller, $path[4])) {
                                 $method = $path[4];
-                                $controller->$method();
+                                $controller->$method($_POST);
                             } else {
                                 throw new \Exception("Méthode inéxistante en POST", 404);
                             }
@@ -74,11 +74,7 @@ final class Routeur
                     break;
                 case 'DELETE':
                     if (isset($path[4]) && is_numeric($path[4])) {
-//                        if ( !$controller->findOne($path[4]) /*"id ne corresponds a aucun plat"*/) {
-//                            throw new \Exception("L'ID ne correspond a aucun plat", 404);
-//                        } else {
                             $controller->delete($path[4]);
-//                        }
                     }
                     break;
                 default:

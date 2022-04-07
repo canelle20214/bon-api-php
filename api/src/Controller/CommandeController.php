@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Model\CommandeModel;
+use App\Security\JWTSecurity;
 use Core\Controller\DefaultController;
 
 final class CommandeController extends DefaultController{
@@ -11,6 +12,7 @@ final class CommandeController extends DefaultController{
     public function __construct()
     {
         $this->model = new CommandeModel;
+        (new JWTSecurity)->verifyToken();
     }
 
     public function getAll()

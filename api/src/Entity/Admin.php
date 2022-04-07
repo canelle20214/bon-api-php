@@ -4,19 +4,34 @@ namespace App\Entity;
 use Core\Entity\DefaultEntity;
 use JsonSerializable;
 
+/**
+ * @OA\Schema()
+ */
 final class Admin extends DefaultEntity implements JsonSerializable{
 
-    // php@8.1
-    // private readonly int $id;
-
-    // php@8.0
+    /**
+     * @var int
+     * @OA\Property(type="integer", property="id", nullable=false)
+     */
     private int $id;
 
+    /**
+     * @var string
+     * @OA\Property(type="string", property="nom", nullable=false)
+     */
     private string $nom;
 
+    /**
+     * @var string
+     * @OA\Property(type="string", property="mail", nullable=false)
+     */
     private string $mail;
-    
-    private float $password;
+
+    /**
+     * @var string
+     * @OA\Property(type="string", property="password", nullable=false)
+     */
+    private string $password;
 
     public function jsonSerialize(): mixed
     {
@@ -29,8 +44,6 @@ final class Admin extends DefaultEntity implements JsonSerializable{
     }
 
     /**
-     * Get the value of id
-     *
      * @return int
      */
     public function getId(): int
@@ -39,8 +52,6 @@ final class Admin extends DefaultEntity implements JsonSerializable{
     }
 
     /**
-     * Get the value of nom
-     *
      * @return string
      */
     public function getNom(): string
@@ -49,8 +60,6 @@ final class Admin extends DefaultEntity implements JsonSerializable{
     }
 
     /**
-     * Get the value of mail
-     *
      * @return string
      */
     public function getMail(): string
@@ -59,21 +68,16 @@ final class Admin extends DefaultEntity implements JsonSerializable{
     }
 
     /**
-     * Get the value of password
-     *
-     * @return float
+     * @return string
      */
-    public function getPassword(): float
+    public function getPassword(): string
     {
         return $this->password;
     }
 
     /**
-     * Set the value of nom
-     *
      * @param string $nom
-     *
-     * @return self
+     * @return $this
      */
     public function setNom(string $nom): self
     {
@@ -83,9 +87,8 @@ final class Admin extends DefaultEntity implements JsonSerializable{
     }
 
     /**
-     * Get the value of mail
-     *
-     * @return self
+     * @param string $mail
+     * @return $this
      */
     public function setMail(string $mail): self
     {
@@ -94,11 +97,10 @@ final class Admin extends DefaultEntity implements JsonSerializable{
     }
 
     /**
-     * Get the value of password
-     *
-     * @return self
+     * @param string $password
+     * @return $this
      */
-    public function setPassword(float $password): self
+    public function setPassword(string $password): self
     {
         $this->password = $password;
         return $this;

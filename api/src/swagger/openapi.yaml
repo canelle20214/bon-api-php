@@ -1,0 +1,216 @@
+openapi: 3.0.0
+info:
+  title: Bon-API
+  version: v0
+servers:
+  -
+    url: 'http://localhost:8000/api/v0'
+paths:
+  /admin:
+    get:
+      tags:
+        - Admin
+      operationId: 89bbad68b14e55e85eb06cf5c3f28790
+      responses:
+        '200':
+          description: 'Retourne l ensemble des admins'
+          content:
+            application/json:
+              schema:
+                description: 'Liste des admins'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Admin'
+        '404':
+          description: 'Erreur de récupération'
+          content:
+            application/json:
+              schema:
+                description: 'Message d erreur'
+                type: string
+              example: 'Une erreur s est produite'
+  /plat:
+    get:
+      tags:
+        - Plat
+      operationId: 53896f8196bd7d3e7b7bbc23b49edeac
+      responses:
+        '200':
+          description: 'Retourne l ensemble des plats'
+          content:
+            application/json:
+              schema:
+                description: 'Contenu de notre menu'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Plat'
+        '404':
+          description: 'Erreur de récupération'
+          content:
+            application/json:
+              schema:
+                description: 'Message d erreur'
+                type: string
+              example: 'Une erreur s est produite'
+    post:
+      tags:
+        - Plat
+      operationId: 8cceb4489d1a0aebc341ab344d476e97
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+                - prix
+                - image
+                - description
+              properties:
+                name:
+                  type: string
+                prix:
+                  type: number
+                  format: float
+                image:
+                  type: string
+                description:
+                  type: string
+              type: object
+              example:
+                name: 'Nom du plat'
+                prix: 'Prix du plat'
+                image: 'Image d un plat'
+                description: 'Descripion du plat'
+      responses:
+        '201':
+          description: 'Retourne le plat nouvellement crée'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plat'
+  '/plat/{id}':
+    get:
+      tags:
+        - Plat
+      operationId: 51c0a732a3edcebd736093134acc1ce6
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID du plat'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Retourne un plat en fonction de son ID'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plat'
+    put:
+      tags:
+        - Plat
+      operationId: 4dc070f40565d9f013345fc502d12804
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID du plat à modifier'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+                - prix
+                - image
+                - description
+              properties:
+                name:
+                  type: string
+                prix:
+                  type: number
+                  format: float
+                image:
+                  type: string
+                description:
+                  type: string
+              type: object
+              example:
+                name: 'Nom du plat'
+                prix: 'Prix du plat'
+                image: 'Image d un plat'
+                description: 'Descripion du plat'
+      responses:
+        '200':
+          description: 'Suppression réussie'
+          content:
+            application/json:
+              schema:
+                type: string
+    delete:
+      tags:
+        - Plat
+      operationId: e20af23e8cf4ad65ab97d0636b75190e
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID du plat'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Suppression réussie'
+          content:
+            application/json:
+              schema:
+                type: string
+components:
+  schemas:
+    Admin:
+      properties:
+        id:
+          type: integer
+          nullable: false
+        nom:
+          type: string
+          nullable: false
+        mail:
+          type: string
+          nullable: false
+        password:
+          type: string
+          nullable: false
+      type: object
+    Plat:
+      properties:
+        id:
+          type: integer
+          nullable: false
+        nom:
+          type: string
+          nullable: false
+        prix:
+          type: number
+          format: float
+          nullable: false
+        image:
+          type: string
+          nullable: false
+        description:
+          type: string
+          nullable: false
+      type: object
+tags:
+  -
+    name: Admin
+    description: 'Routes liées aux admins'
+  -
+    name: Plat
+    description: 'Routes liées aux plats'

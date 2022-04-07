@@ -4,37 +4,38 @@ namespace App\Entity;
 use Core\Entity\DefaultEntity;
 use JsonSerializable;
 
+/**
+ * @OA\Schema()
+ */
 final class Plat extends DefaultEntity implements JsonSerializable {
 
-    // php@8.1
     /**
      * @var int
-     */
-    //private readonly int $id;
-
-    // php@8.0
-    /**
-     * @var int
+     * @OA\Property(type="integer", property="id", nullable=false)
      */
     private int $id;
 
     /**
      * @var string
+     * @OA\Property(type="string", property="nom", nullable=false)
      */
     private string $nom;
 
     /**
      * @var float
+     * @OA\Property(type="float", property="prix", nullable=false)
      */
     private float $prix;
 
     /**
      * @var string
+     * @OA\Property(type="string", property="image", nullable=false)
      */
     private string $image;
 
     /**
      * @var string
+     * @OA\Property(type="string", property="description", nullable=false)
      */
     private string $description;
 

@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS plat_commande(
 
 DROP TABLE IF EXISTS table_reservation;
 CREATE TABLE IF NOT EXISTS table_reservation(
-    id int not null,
+    id int not null AUTO_INCREMENT,
     reservation_id int not null,
     tables_id int not null,
     PRIMARY KEY (id), 
