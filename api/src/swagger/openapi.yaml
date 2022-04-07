@@ -57,6 +57,9 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Admin'
+      security:
+        -
+          Authentication: []
     post:
       tags:
         - Admin
