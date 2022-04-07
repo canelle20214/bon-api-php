@@ -5,10 +5,27 @@ namespace App\Entity;
 use Core\Entity\DefaultEntity;
 use JsonSerializable;
 
+/**
+ * @OA\Schema()
+ */
 final class TableReservation extends DefaultEntity implements JsonSerializable
 {
+    /**
+     * @var int
+     * @OA\Property(type="integer", property="id", nullable=false)
+     */
     private int $id;
+    
+    /**
+     * @var int
+     * @OA\Property(type="integer", property="reservation_id", nullable=false)
+     */
     private int $reservation_id;
+    
+    /**
+     * @var int
+     * @OA\Property(type="integer", property="table_id", nullable=false)
+     */
     private int $tables_id;
 
     public function jsonSerialize(): array

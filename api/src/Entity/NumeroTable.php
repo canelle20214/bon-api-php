@@ -4,10 +4,21 @@ namespace App\Entity;
 use Core\Entity\DefaultEntity;
 use JsonSerializable;
 
+/**
+ * @OA\Schema()
+ */
 final class NumeroTable extends DefaultEntity implements JsonSerializable{
 
+    /**
+     * @var int
+     * @OA\Property(type="integer", property="id", nullable=false)
+     */
     private int $id;
 
+    /**
+     * @var int
+     * @OA\Property(type="integer", property="nombre_de_personnes", nullable=false)
+     */
     private string $nombre_de_personnes;
     
     /**

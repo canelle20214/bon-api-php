@@ -4,6 +4,9 @@ namespace App\Entity;
 use Core\Entity\DefaultEntity;
 use JsonSerializable;
 
+/**
+ * @OA\Schema()
+ */
 final class PlatCommande extends DefaultEntity implements JsonSerializable {
 
     // php@8.1
@@ -15,16 +18,19 @@ final class PlatCommande extends DefaultEntity implements JsonSerializable {
     // php@8.0
     /**
      * @var int
+     * @OA\Property(type="integer", property="id", nullable=false)
      */
     private int $id;
 
     /**
      * @var int
+     * @OA\Property(type="integer", property="plat_id", nullable=false)
      */
     private int $plat_id;
 
     /**
      * @var int
+     * @OA\Property(type="integer", property="commande_id", nullable=false)
      */
     private int $commande_id;
 

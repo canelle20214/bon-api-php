@@ -4,22 +4,50 @@ namespace App\Entity;
 use Core\Entity\DefaultEntity;
 use JsonSerializable;
 
+/**
+ * @OA\Schema()
+ */
+
 final class Commande extends DefaultEntity implements JsonSerializable{
 
     // php@8.1
     // private readonly int $id;
 
     // php@8.0
+    /**
+     * @var int
+     * @OA\Property(type="integer", property="id", nullable=false)
+     */
     private int $id;
 
+    /**
+     * @var string
+     * @OA\Property(type="string", property="nom", nullable=false)
+     */
     private string $nom;
 
+    /**
+     * @var string
+     * @OA\Property(type="string", property="reference", nullable=false)
+     */
     private string $reference;
     
+    /**
+     * @var float
+     * @OA\Property(type="float", property="prix", nullable=false)
+     */
     private float $prix;
     
+    /**
+     * @var string
+     * @OA\Property(type="string", property="status", nullable=false)
+     */
     private string $status;
     
+    /**
+     * @var string
+     * @OA\Property(type="string", property="insertion", nullable=true)
+     */
     private string $insertion;
 
     public function jsonSerialize(): mixed

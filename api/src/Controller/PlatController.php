@@ -47,15 +47,6 @@ final class PlatController extends DefaultController{
      *              ref="#/components/schemas/Plat"
      *          )
      *      )
-     *  ),
-     *  @OA\Response(
-     *      response=404,
-     *      description="Erreur de récupération",
-     *      @OA\JsonContent(
-     *          description="Message d erreur",
-     *          type="string",
-     *          example="Une erreur s est produite"
-     *      )
      *  )
      * )
      */
@@ -129,7 +120,7 @@ final class PlatController extends DefaultController{
      *                  property="description",
      *                  type="string"
      *              ),
-     *              example={"name": "Nom du plat", "prix": "Prix du plat", "image": "Image d un plat", "description": "Descripion du plat"}
+     *              example={"name": "Nom du plat", "prix": 26.2, "image": "Image d un plat", "description": "Descripion du plat"}
      *          )
      *      ),
      *  ),
@@ -196,23 +187,24 @@ final class PlatController extends DefaultController{
      *                  property="description",
      *                  type="string"
      *              ),
-     *              example={"name": "Nom du plat", "prix": "Prix du plat", "image": "Image d un plat", "description": "Descripion du plat"}
+     *              example={"name": "Nom du plat", "prix": 26.2, "image": "Image d un plat", "description": "Descripion du plat"}
      *          )
      *      ),
      *  ),
      *  @OA\Response(
      *      response=200,
-     *      description="Suppression réussie",
+     *      description="Plat modifié",
      *      @OA\JsonContent(
      *          type="string"
      *      )
      *  )
      * )
      */
+
     public function update(int $id, array $data) {
         $this->model->update($id, $data);
         (new JWTSecurity)->verifyToken();
-        $this->jsonResponse("Plat modifié", 201);
+        $this->jsonResponse("Plat modifié", 200);
     }
 
     /**
@@ -233,10 +225,19 @@ final class PlatController extends DefaultController{
      *  ),
      *  security={{"Authentication": {}}},
      *  @OA\Response(
-     *      response=200,
-     *      description="Suppression réussie",
+     *      response=204,
+     *      description="Plat supprimé",
      *      @OA\JsonContent(
      *          type="string"
+     *      )
+     *  ),
+     *  @OA\Response(
+     *      response=404,
+     *      description="Erreur de récupération",
+     *      @OA\JsonContent(
+     *          description="Message d erreur",
+     *          type="string",
+     *          example="Ce plat n'existe pas/plus"
      *      )
      *  )
      * )
@@ -246,9 +247,9 @@ final class PlatController extends DefaultController{
         if ($plat) {
             $this->model->delete($id);
             (new JWTSecurity)->verifyToken();
-            $this->jsonResponse("Plat supprimé", 200);
+            $this->jsonResponse("Plat supprimé", 204);
         } else {
-            $this->jsonResponse("Ce plat n'existe pas/plus", 200);
+            $this->jsonResponse("Ce plat n'existe pas/plus", 404);
         }
     }
 }

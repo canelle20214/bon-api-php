@@ -25,11 +25,11 @@ paths:
                   type: string
               type: object
               example:
-                mail: monamil@gmail.com
+                mail: monmail@gmail.com
                 password: '123456789'
       responses:
         '201':
-          description: 'Retourne l\''admin créé.'
+          description: 'Retourne l\''admin connecté.'
           content:
             application/json:
               schema:
@@ -41,7 +41,7 @@ paths:
               schema:
                 description: 'Message d erreur'
                 type: string
-              example: 'Une erreur s est produite'
+              example: 'Invalid request method'
   /admin:
     get:
       tags:
@@ -57,6 +57,383 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Admin'
+    post:
+      tags:
+        - Admin
+      operationId: e892de0644c185e81e1359a5d780aa34
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - mail
+                - password
+                - nom
+              properties:
+                mail:
+                  type: string
+                password:
+                  type: string
+                nom:
+                  type: string
+              type: object
+              example:
+                mail: monmail@gmail.com
+                password: '123456789'
+                nom: 'John Doe'
+      responses:
+        '201':
+          description: 'Retourne l\''admin créé.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Admin'
+  '/admin/{id}':
+    get:
+      tags:
+        - Admin
+      operationId: 8f5cb4a18254f7694b8608591f786bcd
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID de l\''admin'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Retourne un admin en fonction de son ID'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Admin'
+    put:
+      tags:
+        - Admin
+      operationId: 3b01701b92b874e4c15db51618267954
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID de l\''admin à modifier'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - name
+                - prix
+                - image
+                - description
+              properties:
+                name:
+                  type: string
+                prix:
+                  type: number
+                  format: float
+                image:
+                  type: string
+                description:
+                  type: string
+              type: object
+              example:
+                name: 'Nom du plat'
+                prix: 'Prix du plat'
+                image: 'Image d un plat'
+                description: 'Descripion du plat'
+      responses:
+        '200':
+          description: 'Admin modifié'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+    delete:
+      tags:
+        - Admin
+      operationId: 5c680642d3b23069e660e5d661826369
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID de l\''admin'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: 'Administrateur supprimé.'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+  /commande:
+    get:
+      tags:
+        - Commande
+      operationId: e8277b1f6c8de1bf2e48517b12707d41
+      responses:
+        '200':
+          description: 'Retourne l ensemble des commandes'
+          content:
+            application/json:
+              schema:
+                description: 'Toutes les commandes'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Commande'
+    post:
+      tags:
+        - Commande
+      operationId: 624a8cc562f4d6f1dd4dba6bcc401dd6
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - nom
+                - reference
+                - prix
+                - status
+              properties:
+                nom:
+                  type: string
+                reference:
+                  type: string
+                prix:
+                  type: number
+                  format: float
+                status:
+                  type: string
+              type: object
+              example:
+                nom: 'John Doe'
+                status: 'en cours de préparation'
+                reference: RA34FS3UTS
+                prix: 62.1
+      responses:
+        '200':
+          description: 'Commande crée'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+  '/commande/{id}':
+    get:
+      tags:
+        - Commande
+      operationId: 07e28f5b537b479b944f36c37a04ef7a
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID de la commande'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Retourne une commande en fonction de son ID'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Commande'
+    put:
+      tags:
+        - Commande
+      operationId: def8ecbeddb632d63db4c951b066a010
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID de la commande à modifier'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - nom
+                - reference
+                - prix
+                - status
+              properties:
+                nom:
+                  type: string
+                reference:
+                  type: string
+                prix:
+                  type: number
+                  format: float
+                status:
+                  type: string
+              type: object
+              example:
+                nom: 'John Doe'
+                status: 'en cours de préparation'
+                reference: RA34FS3UTS
+                prix: 62.1
+      responses:
+        '200':
+          description: 'Commande modifiée'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+    delete:
+      tags:
+        - Commande
+      operationId: f68e2b5d8b228ff46145444cc0b5329b
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID de la commande'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: 'Suppression réussie'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+  /numeroTable:
+    get:
+      tags:
+        - Table
+      operationId: 3fa68adb7e048e63928eb838bb61d69b
+      responses:
+        '200':
+          description: 'Retourne l ensemble des tables'
+          content:
+            application/json:
+              schema:
+                description: 'Tables du restaurant'
+                type: array
+                items:
+                  $ref: '#/components/schemas/NumeroTable'
+    post:
+      tags:
+        - Table
+      operationId: 80f050cecbf3df0a4810404254096196
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - nombre_de_personnes
+              properties:
+                nombre_de_personnes:
+                  type: integer
+              type: object
+              example:
+                nombre_de_personnes: 3
+      responses:
+        '200':
+          description: 'Table créée'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+  '/numeroTable/{id}':
+    get:
+      tags:
+        - Table
+      operationId: 0097b61a3329b225c0fb2a08e3371ebc
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID de la table'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Retourne une table en fonction de son ID'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NumeroTable'
+    put:
+      tags:
+        - Table
+      operationId: 6d315a265d7c23fbf2b2ae00b4d1782b
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID de la table à modifier'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - nombre_de_personnes
+              properties:
+                nombre_de_personnes:
+                  type: integer
+              type: object
+              example:
+                nombre_de_personnes: 3
+      responses:
+        '200':
+          description: 'Table modifiée'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+    delete:
+      tags:
+        - Table
+      operationId: 2e458eceb681c8ffabbaab634c4e2919
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID de la table'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: 'Suppression réussie'
+          content:
+            application/json:
+              schema:
+                type: string
         '404':
           description: 'Erreur de récupération'
           content:
@@ -64,7 +441,143 @@ paths:
               schema:
                 description: 'Message d erreur'
                 type: string
-              example: 'Une erreur s est produite'
+              example: 'Cette table n''existe pas/plus'
+      security:
+        -
+          Authentication: []
+  /platCommande:
+    get:
+      tags:
+        - 'Plat Commande'
+      operationId: da6326872318a9e5f822e855f2b3bb09
+      responses:
+        '200':
+          description: 'Retourne l ensemble des plats commandés'
+          content:
+            application/json:
+              schema:
+                description: 'Tous les plats commandés'
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlatCommande'
+    post:
+      tags:
+        - 'Plat Commande'
+      operationId: 0b4885f2df48d26606372d6fc61209fe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - plat_id
+                - commande_id
+              properties:
+                plat_id:
+                  type: integer
+                commande_id:
+                  type: integer
+              type: object
+              example:
+                plat_id: 18
+                commande_id: 3
+      responses:
+        '200':
+          description: 'Plat de la commande créé'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+  '/platCommande/{id}':
+    get:
+      tags:
+        - 'Plat Commande'
+      operationId: a2172a39b6ca86e696cc46f21974fb92
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID du plat de la commande'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Retourne un plat d\''une commande en fonction de son ID'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatCommande'
+    put:
+      tags:
+        - 'Plat Commande'
+      operationId: e74080b036e3d5a36389b6c6033cad2e
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID du plat de la commande à modifier'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - plat_id
+                - commande_id
+              properties:
+                plat_id:
+                  type: integer
+                commande_id:
+                  type: integer
+              type: object
+              example:
+                plat_id: 18
+                commande_id: 3
+      responses:
+        '200':
+          description: 'Plat de la commande modifié'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+    delete:
+      tags:
+        - 'Plat Commande'
+      operationId: 840d356c8f366a13d931dca51374434a
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID du plat dans la commande'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: 'Suppression réussie'
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: 'Erreur de récupération'
+          content:
+            application/json:
+              schema:
+                description: 'Message d erreur'
+                type: string
+              example: 'Ce plat de la commande n''existe pas/plus'
+      security:
+        -
+          Authentication: []
   /plat:
     get:
       tags:
@@ -80,14 +593,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Plat'
-        '404':
-          description: 'Erreur de récupération'
-          content:
-            application/json:
-              schema:
-                description: 'Message d erreur'
-                type: string
-              example: 'Une erreur s est produite'
     post:
       tags:
         - Plat
@@ -114,7 +619,7 @@ paths:
               type: object
               example:
                 name: 'Nom du plat'
-                prix: 'Prix du plat'
+                prix: 26.2
                 image: 'Image d un plat'
                 description: 'Descripion du plat'
       responses:
@@ -181,12 +686,12 @@ paths:
               type: object
               example:
                 name: 'Nom du plat'
-                prix: 'Prix du plat'
+                prix: 26.2
                 image: 'Image d un plat'
                 description: 'Descripion du plat'
       responses:
         '200':
-          description: 'Suppression réussie'
+          description: 'Plat modifié'
           content:
             application/json:
               schema:
@@ -207,8 +712,274 @@ paths:
           schema:
             type: integer
       responses:
+        '204':
+          description: 'Plat supprimé'
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: 'Erreur de récupération'
+          content:
+            application/json:
+              schema:
+                description: 'Message d erreur'
+                type: string
+              example: 'Ce plat n''existe pas/plus'
+      security:
+        -
+          Authentication: []
+  /reservation:
+    get:
+      tags:
+        - Reservation
+      operationId: 715656f42fb681ff390ad458e5ba03aa
+      responses:
         '200':
-          description: 'Suppression réussie'
+          description: 'Retourne l ensemble des reservations'
+          content:
+            application/json:
+              schema:
+                description: 'Toutes les reservations'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reservation'
+    put:
+      tags:
+        - Reservation
+      operationId: a15c4025f462c0ed2a1091e7193a264a
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - nom
+                - nombre
+                - creneaux
+              properties:
+                nom:
+                  type: string
+                nombre:
+                  type: integer
+                creneaux:
+                  type: string
+              type: object
+              example:
+                nom: 'John Doe'
+                creneaux: '2022-03-04 19:45'
+                nombre: 5
+      responses:
+        '200':
+          description: 'Réservation créée'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+  '/reservation/{id}':
+    get:
+      tags:
+        - Reservation
+      operationId: 2074a5451bec35ccc0c327e69a7516d3
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID de la reservation'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Retourne une reservation en fonction de son ID'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+    put:
+      tags:
+        - Reservation
+      operationId: a5c54898b468828c95b19b182a08dd53
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID de la reservation à modifier'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - nom
+                - nombre
+                - creneaux
+              properties:
+                nom:
+                  type: string
+                nombre:
+                  type: integer
+                creneaux:
+                  type: string
+              type: object
+              example:
+                nom: 'John Doe'
+                creneaux: '2022-03-04 19:45'
+                nombre: 5
+      responses:
+        '200':
+          description: 'Réservation modifiée'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+    delete:
+      tags:
+        - Reservation
+      operationId: f0fff1cd653ee7da2515b91905aef699
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID de la reservation'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: 'Réservation supprimée'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+  /tableReservation:
+    get:
+      tags:
+        - 'Table Reservation'
+      operationId: c9ae1535f885a3236309511473dc5e8d
+      responses:
+        '200':
+          description: 'Retourne l\'' ensemble des tables réservées'
+          content:
+            application/json:
+              schema:
+                description: 'Toutes les tables réservées'
+                type: array
+                items:
+                  $ref: '#/components/schemas/TableReservation'
+    post:
+      tags:
+        - 'Table Reservation'
+      operationId: 14382974d48ba13fc75b1fab0e26ae49
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - table_id
+                - reservation_id
+              properties:
+                table_id:
+                  type: intgeger
+                reservation_id:
+                  type: integer
+              type: object
+              example:
+                table_id: 3
+                reservation_id: 2
+      responses:
+        '200':
+          description: 'Table réservée créée'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+  '/tableReservation/{id}':
+    get:
+      tags:
+        - 'Table Reservation'
+      operationId: f67fd71f80411450b9ee00026611647f
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID du table liée à une reservation'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'Retourne une table liée à une réservation en fonction de son ID'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableReservation'
+    put:
+      tags:
+        - 'Table Reservation'
+      operationId: a2dd300e428e057b6184d7fa40eacc66
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID du la reservation liée à la table à modifier'
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+                - table_id
+                - reservation_id
+              properties:
+                table_id:
+                  type: intgeger
+                reservation_id:
+                  type: integer
+              type: object
+              example:
+                table_id: 3
+                reservation_id: 2
+      responses:
+        '200':
+          description: 'Table réservée modifiée'
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        -
+          Authentication: []
+    delete:
+      tags:
+        - 'Table Reservation'
+      operationId: 87c1ce67b99e86a4e7f9ee8bfa6e3f67
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID de la réservation liée à la table'
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: 'Table réservée supprimée'
           content:
             application/json:
               schema:
@@ -233,6 +1004,37 @@ components:
           type: string
           nullable: false
       type: object
+    Commande:
+      properties:
+        id:
+          type: integer
+          nullable: false
+        nom:
+          type: string
+          nullable: false
+        reference:
+          type: string
+          nullable: false
+        prix:
+          type: number
+          format: float
+          nullable: false
+        status:
+          type: string
+          nullable: false
+        insertion:
+          type: string
+          nullable: true
+      type: object
+    NumeroTable:
+      properties:
+        id:
+          type: integer
+          nullable: false
+        nombre_de_personnes:
+          type: integer
+          nullable: false
+      type: object
     Plat:
       properties:
         id:
@@ -252,6 +1054,54 @@ components:
           type: string
           nullable: false
       type: object
+    PlatCommande:
+      properties:
+        id:
+          type: integer
+          nullable: false
+        plat_id:
+          type: integer
+          nullable: false
+        commande_id:
+          type: integer
+          nullable: false
+      type: object
+    Reservation:
+      properties:
+        id:
+          type: integer
+          nullable: false
+        nom:
+          type: string
+          nullable: false
+        nombre:
+          type: integer
+          nullable: false
+        creneaux:
+          type: string
+          nullable: false
+      type: object
+    TableReservation:
+      properties:
+        id:
+          type: integer
+          nullable: false
+        reservation_id:
+          type: integer
+          nullable: false
+        table_id:
+          type: integer
+          nullable: false
+      type: object
+  responses:
+    '404':
+      description: 'Erreur de récupération'
+      content:
+        application/json:
+          schema:
+            description: 'Message d erreur'
+            type: string
+          example: Unauthorized
   securitySchemes:
     Authorization:
       type: http
@@ -264,6 +1114,3 @@ tags:
   -
     name: Plat
     description: 'Routes liées aux plats'
-
-security:
-  - bearerAuth: []

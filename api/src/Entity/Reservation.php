@@ -3,16 +3,35 @@
 namespace App\Entity;
 
 use Core\Entity\DefaultEntity;
-use DateTime;
 use JsonSerializable;
 
+/**
+ * @OA\Schema()
+ */
 final class Reservation extends DefaultEntity implements JsonSerializable
 {
+    /**
+     * @var int
+     * @OA\Property(type="integer", property="id", nullable=false)
+     */
     private int $id;
 
+    /**
+     * @var string
+     * @OA\Property(type="string", property="nom", nullable=false)
+     */
     private string $nom;
+    
+    /**
+     * @var int
+     * @OA\Property(type="integer", property="nombre", nullable=false)
+     */
     private int $nombre;
 
+    /**
+     * @var string
+     * @OA\Property(type="string", property="creneaux", nullable=false)
+     */
     private string $creneaux;
 
     public function jsonSerialize(): mixed
