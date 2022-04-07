@@ -8,6 +8,13 @@ use App\Security\JWTSecurity;
 
 use Core\Controller\DefaultController;
 
+/**
+ * @OA\Tag(
+ *  name="Reservation",
+ *  description="Routes liées aux réservations"
+ * )
+ */
+
 final class ReservationController extends DefaultController
 {
     private $model;

@@ -5,6 +5,13 @@ use App\Model\CommandeModel;
 use App\Security\JWTSecurity;
 use Core\Controller\DefaultController;
 
+/**
+ * @OA\Tag(
+ *  name="Commande",
+ *  description="Routes liées aux commandes"
+ * )
+ */
+
 final class CommandeController extends DefaultController{
 
     private $model;

@@ -7,6 +7,13 @@ use Core\Controller\DefaultController;
 
 use App\Security\JWTSecurity;
 
+/**
+ * @OA\Tag(
+ *  name="Table Reservation",
+ *  description="Routes liées aux tables réservées"
+ * )
+ */
+
 final class TableReservationController extends DefaultController
 {
     private $model;

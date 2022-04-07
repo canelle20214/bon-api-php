@@ -7,6 +7,13 @@ use App\Security\JWTSecurity;
 
 use Core\Controller\DefaultController;
 
+/**
+ * @OA\Tag(
+ *  name="Table",
+ *  description="Routes liées aux tables"
+ * )
+ */
+
 final class NumeroTableController extends DefaultController{
 
     private $model;

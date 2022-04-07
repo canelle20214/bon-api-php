@@ -1112,5 +1112,20 @@ tags:
     name: Admin
     description: 'Routes liées aux admins'
   -
+    name: Commande
+    description: 'Routes liées aux commandes'
+  -
+    name: Table
+    description: 'Routes liées aux tables'
+  -
+    name: 'Plat Commande'
+    description: 'Routes liées aux plats d\'' une commande'
+  -
     name: Plat
     description: 'Routes liées aux plats'
+  -
+    name: Reservation
+    description: 'Routes liées aux réservations'
+  -
+    name: 'Table Reservation'
+    description: 'Routes liées aux tables réservées'

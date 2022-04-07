@@ -6,6 +6,13 @@ use Core\Controller\DefaultController;
 
 use App\Security\JWTSecurity;
 
+/**
+ * @OA\Tag(
+ *  name="Plat Commande",
+ *  description="Routes liées aux plats d\' une commande"
+ * )
+ */
+
 final class PlatCommandeController extends DefaultController{
 
     private $model;
