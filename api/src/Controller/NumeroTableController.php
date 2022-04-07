@@ -15,7 +15,7 @@ final class NumeroTableController extends DefaultController{
     {
         $this->model = new NumeroTableModel;
 
-        (new JWTSecurity)->verifyToken();
+        // (new JWTSecurity)->verifyToken();
     }
 
     /**
@@ -45,6 +45,7 @@ final class NumeroTableController extends DefaultController{
     {
         $lastId = $this->model->save($data);
         $numeroTable = $this->model->find($lastId);
+        (new JWTSecurity)->verifyToken();
         $this->jsonResponse($numeroTable, 201);
     }
 
@@ -55,6 +56,7 @@ final class NumeroTableController extends DefaultController{
      */
     public function update(int $id, array $data) {
         $this->model->update($id, $data);
+        (new JWTSecurity)->verifyToken();
         $this->jsonResponse("Table modifiée", 201);
     }
 
@@ -66,6 +68,7 @@ final class NumeroTableController extends DefaultController{
         $numeroTable = $this->model->find($id);
         if ($numeroTable) {
             $this->model->delete($id);
+            (new JWTSecurity)->verifyToken();
             $this->jsonResponse("Table supprimé", 200);
         } else {
             $this->jsonResponse("Cette table n'existe pas/plus", 200);

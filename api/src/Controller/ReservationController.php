@@ -16,7 +16,7 @@ final class ReservationController extends DefaultController
     {
         $this->model = new ReservationModel;
 
-        (new JWTSecurity)->verifyToken();
+        // (new JWTSecurity)->verifyToken();
 
     }
 
@@ -36,18 +36,21 @@ final class ReservationController extends DefaultController
     {
         $lastId = $this->model->save($data);
         $reservation = $this->model->find($lastId);
+        (new JWTSecurity)->verifyToken();
         $this->jsonResponse($reservation, 201);
     }
 
     public function update(int $id, array $data): void
     {
         $this->model->update($id, $data);
+        (new JWTSecurity)->verifyToken();
         $this->jsonResponse("Réservation modifiée", 201);
     }
 
     public function delete(int $id): void
     {
         $this->model->delete($id);
+        (new JWTSecurity)->verifyToken();
         $this->jsonResponse("Réservation supprimée", 200);
     }
 }
